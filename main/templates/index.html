@@ -1,0 +1,330 @@
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EntranceMaster-Home
+    </title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+<link rel="stylesheet" href="{% static 'assets/style.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/versions.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Modernizer for Portfolio -->
+		<script src="{% static 'assets/js/modernizer.js' %}"></script>
+
+    
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    
+</head>
+<body class="host_version"> 
+
+
+
+    
+	
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index/">
+				
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-host">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="index/">Home</a></li>
+					
+						<li class="nav-item"><a class="nav-link" href="about/">About Us</a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Course </a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-a">
+								<a class="dropdown-item" href="course_grid_2/">Medical course</a>
+								<a class="dropdown-item" href="course_grid_3/">CA course </a>
+								<a class="dropdown-item" href="course_grid_4/">Other course </a>
+							</div>
+						</li>
+					
+						</li>
+						<li class="nav-item"><a class="nav-link" href="team/">Team</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="signin/">Login/Register</a></li>
+					</ul>
+					
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+	
+	<div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel" data-pause="hover" data-interval="false" >
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleControls" data-slide-to="1"></li>
+			<li data-target="#carouselExampleControls" data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner" role="listbox">
+			<div class="carousel-item active">
+				<div id="home" class="first-section">
+					<img src="{% static 'assets/images/slider image -01.jpg' %}" alt="Slider Image 01">
+					<div class="dtab">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 text-right">
+									<div class="big-tagline">
+										<h2><strong> EntranceMaster</strong> </h2>
+										<p class="lead">Nepal`S First Smart Leading Institution . </p>
+										</div>	
+								</div>
+							</div><!-- end row -->            
+						</div><!-- end container -->
+					</div>
+				</div><!-- end section -->
+			</div>
+			<div class="carousel-item">
+				<div id="home" class="first-section">
+					<img src="{% static 'assets/images/sliderrimage-02.jpg' %}" alt="Slider Image 02">
+					<div class="dtab">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 text-left">
+									<div class="big-tagline">
+                                        <h2><strong> EntranceMaster</strong> </h2>
+										<p class="lead">Nepal`S First Smart Leading Institution . </p>
+											
+									</div>
+								</div>
+							</div><!-- end row -->            
+						</div><!-- end container -->
+					</div>
+				</div><!-- end section -->
+			</div>
+			<div class="carousel-item">
+				<div id="home" class="first-section">
+					<img src="{% static 'assets/images/slider-03.jpg' %}" alt="Slider Image 3">
+					<div class="dtab">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 text-center">
+									<div class="big-tagline">
+										<h2><strong> EntranceMaster</strong> </h2>
+										<p class="lead">Nepal`S First Smart Leading Institution . </p>
+										
+									</div>
+								</div>
+							</div><!-- end row -->            
+						</div><!-- end container -->
+					</div>
+				</div><!-- end section -->
+			</div>
+			<!-- Left Control -->
+			<a class="new-effect carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+				<span class="fa fa-angle-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+
+			<!-- Right Control -->
+			<a class="new-effect carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+				<span class="fa fa-angle-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+	</div>
+	
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <div class="section-title row text-center">
+                <div class="col-md-8 offset-md-2">
+                    <h3>About Us</h3>
+                    <p class="lead">We are a dedicated group of Tutors committed to providing you with high-quality educational content that comprehensively covers your syllabus. Our mission is to make your academic journey smoother, whether you're preparing for Entrance Exam, Chartered Accountant or any other Course.
+
+                        You no longer need to navigate the challenges of finding the best institute and accommodation in respective area. With our resources, you can study from the comfort of your own home and then move to Centers fully prepared for Tests/Exam and practicals.
+                        
+                        All the content on our platform is provided by experienced Tutors.</p>
+                </div>
+            </div><!-- end title -->
+        
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="message-box">
+                        <h4>Upcoming Best Smart Academy </h4>
+                        <h2>Welcome to Entrance Master</h2>
+                        <p>Welcome to Entrance Master! Here, we take immense pride in being a registered educational 
+							sanctuary, presenting an enchanting world of learning that unfurls right before your eyes. 
+							Our digital realm is a haven dedicated to the art of education, offering a splendid array of 
+							Live and Recorded courses meticulously crafted to enhance your journey in the domains of
+							 Medical Entrance Classes and the esteemed Chartered Accountant profession.
+							  Come, join us in this delightful quest for knowledge, where every moment brings you a step
+							   closer to your cherished dreams.</p>
+                    
+                    </div><!-- end messagebox -->
+                </div><!-- end col -->
+				
+				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="post-media wow fadeIn">
+											<img src="{% static 'assets/images/about_02.jpg' %}" alt="About Image 2" class="img-fluid img-rounded">
+                    </div><!-- end media -->
+                </div><!-- end col -->
+			</div>
+			
+				
+				
+				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+                    <div class="message-box">
+                        <h2>Services of Entrance Master</h2>
+                        <p>At Entrance Master, we're thrilled to unveil our treasure trove of recorded lectures,
+                             catering to the seekers of wisdom in both the illustrious fields of Medical Entrance 
+                             and the distinguished Chartered Accountancy. While you savor these offerings,
+                              we're passionately crafting live classes that will soon grace your screens, 
+                              ensuring real-time engagement and learning. 
+                              But that's not all – our commitment extends beyond knowledge-sharing.
+                               We are dedicated to providing the gentle guiding hand of mentorship and unwavering 
+                               guidance, accompanying you on your educational journey. 
+                               And the delights continue to unfold! We also offer a bouquet of other enchanting 
+                               courses, including:<br> 1. A captivating +2 level science course, where you can boost the performance of board.<br> 
+                               2. Handwritten notes, thoughtfully crafted to enhance your learning experience, adding a personal touch to your educational adventure.<br>
+                               3.A complete guide from zero level  for the common entrance examination with the tutors who already cracked it.<br>
+                               4. A complete course for Chartered Accountant including best lecture and practices.<br>
+                            
+                               Let Entrance Master be your gateway to an educational world filled with possibilities and a nurturing community that's here to support and inspire you at every turn.</p>
+
+                      
+                    </div><!-- end messagebox -->
+                </div><!-- end col -->
+				
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    
+
+	<div class="section cl">
+		<div class="container">
+			<div class="row text-left stat-wrap">
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-study"></i></span>
+					<p class="stat_count">10000+</p>
+					<h3>Students</h3>
+				</div><!-- end col -->
+
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-online"></i></span>
+					<p class="stat_count">15+</p>
+					<h3>Courses</h3>
+				</div><!-- end col -->
+
+				<div class="col-md-4 col-sm-4 col-xs-12">
+					<span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-years"></i></span>
+					<p class="stat_count">3</p>
+					<h3>Years Completed</h3>
+				</div><!-- end col -->
+			</div><!-- end row -->
+		</div><!-- end container -->
+	</div><!-- end section -->
+
+   
+   
+   
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="widget clearfix">
+                        <div class="widget-title">
+                            <h3>About US</h3>
+                        </div>
+                        <p>Entrance Master is one of the leading<br> educational platforms providing virtual classes, mainly for NEB / Common Entrance Examinations, Chartered Accountancy, and other courses.
+
+                            Producing thousands of successful students in every batch, EM is offering multiple courses at a minimal cost with renowned professional tutors.
+                            
+                            Join us on this revolutionary educational journey.</p>   
+						<div class="footer-right">
+							<ul class="footer-links-soi">
+								<li><a href="https://www.facebook.com/people/Entrance-Master/61553562205688/?mibextid=ZbWKwL"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="https://www.youtube.com/@Sulav_acharya"><i class="fa fa-youtube"></i></a></li>
+								<li><a href="https://www.youtube.com/@Sulav_acharya"><i class="fa fa-youtube"></i></a></li>
+								<li><a href="https://t.me/+rrCzEaO7r65hNDA1"><i class="fa fa-telegram"></i></a></li>
+								
+							</ul><!-- end links -->
+						</div>						
+                    </div><!-- end clearfix -->
+                </div><!-- end col -->
+
+				<div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="widget clearfix">
+                        <div class="widget-title">
+                            <h3>Information Link</h3>
+                        </div>
+                        <ul class="footer-links">
+                            <li><a href="">Home</a></li>
+                            <li><a href="course-grid-2/">Medical course</a></li>
+							<li><a href="course-grid-3/">CA course</a></li>
+							<li><a href="course-grid-4/">other course</a></li>
+							<li><a href="about/">About</a></li>
+							
+                        </ul><!-- end links -->
+                    </div><!-- end clearfix -->
+                </div><!-- end col -->
+				
+                <div class="col-lg-4 col-md-4 col-xs-12">
+                    <div class="widget clearfix">
+                        <div class="widget-title">
+                            <h3>Contact Details</h3>
+                        </div>
+
+                        <ul class="footer-links">
+                            <li><a href="mailto:entrancemaster2080@gmail.com">entrancemaster2080@gmail.com</a></li>
+                            <li><a href="www.entrancemaster.com.np">www.entrancemaster.com.np</a></li>
+                            
+                            <li>+977-9815988048</li>
+                        </ul><!-- end links -->
+                    </div><!-- end clearfix -->
+                </div><!-- end col -->
+				
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </footer><!-- end footer -->
+
+    <div class="copyrights">
+        <div class="container">
+            <div class="footer-distributed">
+                <div class="footer-center">                   
+                    <p class="footer-company-name">All Rights Reserved. &copy; 2023 <a href="index/">Entrancemaster.com.np</a></p>
+                </div>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end copyrights -->
+
+    <a href="" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+
+    <!-- ALL JS FILES -->
+    <script src="{% static 'assets/js/all.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+	<script src="{% static 'assets/js/timeline.min.js' %}"></script>
+	<script>
+		timeline(document.querySelectorAll('.timeline'), {
+			forceVerticalMode: 700,
+			mode: 'horizontal',
+			verticalStartPosition: 'left',
+			visibleItems: 4
+		});
+	</script>
+</body>
+</html>
+{% endblock %}

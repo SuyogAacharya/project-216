@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+         
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrance-Master|Notice|</title>
+    <style>
+        /* Reset some default styles */
+        body, h1, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #0abe0a;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Left arrow styles */
+        .left-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Page title styles */
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        /* Gallery container styles */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Notice item styles */
+        .notice {
+            width: 50%; /* Two notices per row with a little gap between them */
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        /* Notice content styles */
+        .notice-content {
+            padding: 10px;
+        }
+
+        /* Hover effect on notices */
+        .notice:hover {
+            transform: scale(1.05);
+        }
+
+        /* Read more link styles */
+        .read-more {
+            color: #0abe0a;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Additional content styles */
+        .more {
+            display: none;
+        }
+
+        /* Style for the second notice */
+        .notice:nth-child(2) {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- Header -->
+    <div class="header">
+        <a class="left-arrow" href="{% url 'main:sidebar' %}">&#8592;</a> <!-- Left-facing arrow -->
+        <h1 class="title">Notices</h1>
+    </div>
+
+    <div class="gallery">
+        
+        <!-- Notice 2 -->
+        <div class="notice" id="notice1">
+            <div class="notice-content">
+                <h2>📌Important Notice</h2>
+                <h1>Our Website is Under Construction</h1>
+                <p>Dear Valued Visitor,</p>
+                <p>We are thrilled to have you here, and we want to express our heartfelt gratitude for your presence on our website.</p>
+                <p>As we diligently work to enhance your online experience, we wish to inform you that certain sections may currently be under development or missing. Rest assured, we are fully committed to delivering a seamless and exceptional user experience.</p>
+                <p>Our dedicated team is tirelessly working towards the grand unveiling, and we anticipate our website to be fully operational and ready to serve you by December end. We understand that this may cause some inconvenience, and we deeply apologize for any disruptions you may encounter during your visit.</p>
+                <p>Your patience and understanding are invaluable to us. We genuinely appreciate your unwavering support and commitment to our website. Your journey with us is vital, and we want to ensure that it is nothing short of extraordinary.</p>
+                <p>Once again, thank you for joining us.</p>
+
+                </div>
+            </div>
+        
+        <!---- Notice 3 -->
+<div class="notice" id="notice2">
+    <div class="notice-content">
+        <h2>📌Important Notice</h2>
+        <h1>Connect with Our Team</h1>
+        <p>Dear Valued Visitor,</p>
+        <p>We value your presence on our platform, and as part of our commitment to providing the best possible experience, we have made it easier for you to connect with our dedicated team.</p>
+        <p>We have provided you with a direct link to all of our team members on WhatsApp, ensuring that your inquiries and feedback are addressed promptly and efficiently. Your satisfaction is our top priority, and this direct line of communication is designed to enhance your experience.</p>
+        <p>However, we kindly request that you use this communication channel responsibly and professionally. Any misuse or disrespectful behavior toward our team members will not be tolerated, and it may lead to legal action.</p>
+        <p>In accordance with the Nepal Constitution, Section 47, it is essential to note that any form of cyberbullying or harassment is considered a criminal offense. This section provides for punishment of up to three years in prison for those found guilty of such acts. We take this matter seriously and are committed to maintaining a safe and respectful online environment for all users.</p>
+        <p>In the event that you encounter any issues or have concerns, please do not hesitate to contact Mr. Suyog, our designated point of contact for addressing complaints and ensuring a positive interaction.</p>
+        <p>We genuinely appreciate your support and presence on our platform. Your contributions and feedback are invaluable as we strive to provide the best service possible. Thank you for choosing to join us.</p>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle "Read More" content visibility
+        function toggleReadMore(noticeId) {
+            const moreContent = document.getElementById(noticeId).querySelector(".more");
+            if (moreContent.style.display === "none") {
+                moreContent.style.display = "block";
+            } else {
+                moreContent.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Site Icons -->
+        <link rel="shortcut icon" href="logo.jpg" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="logo.jpg">
+    <title>Entrance-Master|Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            height: 100vh;
+            background-color: #edf1f3;
+            overflow: hidden;
+        }
+
+        .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;  
+            top: 20px;
+            left: 20px;
+            z-index: 1;
+            transition: left 0.3s ease;
+            color: #111111;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background: #F2F3F5;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #fff;
+            overflow: hidden;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s ease;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #0d0e0d;
+            display: block;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #0abe0a;
+        }
+    </style>
+</head>
+<body>
+  <div class="hamburger">&#9776;</div>
+
+  <div class="sidebar">
+      <a href="">🏠︎Dashboard</a>
+      <a href="{% url 'main:questionbank' %}">📝Questionbank</a>
+       <a href="{% url 'main:modelexam' %}">📝Model Exams</a>
+      <a href="{% url 'main:notice' %}">📢 Notice</a>
+      <a href="/">🚪Logout</a>
+  </div>
+
+    <iframe src="" class="content" style="width: 100%; height: 100%; border: none;"></iframe>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const sidebar = document.querySelector('.sidebar');
+
+        let isSidebarVisible = false;
+
+        hamburger.addEventListener('click', () => {
+            if (!isSidebarVisible) {
+                sidebar.style.left = '0';
+                isSidebarVisible = true;
+            } else {
+                sidebar.style.left = '-250px';
+                isSidebarVisible = false;
+            }
+        });
+    </script>
+</body>
+</html>
