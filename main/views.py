@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from .models import ScoreBoard, Question, TeamMember, Course
+from .models import ScoreBoard, Question, TeamMember, Course, Notice  # Import Notice model
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 import json
@@ -35,8 +35,9 @@ def defult_page(request):
 def questionbank(request):  
     return render(request, 'questionbank.html')
 
-def notice(request):  
-    return render(request, 'notice.html')
+def notice(request):
+    notices = Notice.objects.all()  # Retrieve all notices
+    return render(request, 'notice.html', {'notices': notices})  
 
 def signin(request):
     if request.method == 'POST':
@@ -161,6 +162,4 @@ def check_score(request):
     score_board.save() 
     
     return JsonResponse({'message': 'success', 'status': True})
-
-
 
