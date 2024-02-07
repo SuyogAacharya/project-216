@@ -63,9 +63,32 @@
       display: block;
       margin: 20px auto; /* Center align the button */
     }
+     /* Header styles */
+     .header {
+            background-color: #0abe0a; /* Green header background */
+            color: #fff; /* White text color */
+            padding: 20px; /* Padding for the header */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for the header */
+            position: relative; /* Positioning */
+            margin-bottom: 30px; /* Added margin bottom */
+        }
+
+        /* Left arrow styles */
+        .left-arrow {
+            position: absolute; /* Absolute positioning */
+            top: 50%; /* Aligning vertically at the center */
+            left: 10px; /* Left position */
+            transform: translateY(-50%); /* Adjust vertical position */
+            font-size: 24px; /* Font size */
+            color: #fff; /* White color */
+            text-decoration: none; /* Remove underline */
+        }
   </style>
 </head>
 <body>
+  <div class="header">
+    <a class="left-arrow" href="{% url 'main:modelexam' %}">&#8592;</a> <!-- Left-facing arrow -->
+</div>
   <div class="container">
     <div class="result-container">
       <div class="result-header">
