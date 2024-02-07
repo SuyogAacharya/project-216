@@ -15,9 +15,10 @@ from .views import (
     defult_page,
     notice,
     modelexam,
-    take_quiz,
-    api_question,
-      # Add the import for course_detail
+    view_score,   # Import view_score
+    check_score,  # Import check_score
+    take_quiz,    # Import take_quiz
+    api_question, # Import api_question
 )
 
 app_name = 'main'
@@ -36,6 +37,8 @@ urlpatterns = [
     path('defult_page/', defult_page, name='defult_page'),
     path('notice/', notice, name='notice'),
     path('modelexam/', modelexam, name='modelexam'),
-    path('<id>/', take_quiz, name='take_quiz'),
-    path('api/<id>/', api_question, name='api_question'),
+    path('view_score/', view_score, name='view_score'),  # Add view_score URL
+    path('api/check_score/', check_score, name='check_score'),  # Add check_score URL
+    path('<int:id>/', take_quiz, name='take_quiz'),  # Add take_quiz URL
+    path('api/<int:id>/', api_question, name='api_question'),  # Add api_question URL
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

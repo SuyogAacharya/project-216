@@ -46,37 +46,25 @@
 </head>
 <body>
 
-<!-- Add the "container" class for Bootstrap styling -->
-<div class="container">
 
-    <!-- Left-facing arrow linking to sidebar.html -->
-    <a href="{% url 'main:sidebar' %}" class="back-arrow">&larr;</a>
 
-    <!-- SET-01 -->
+
     <div class="container mt-5 pt-5">
-        <h1>Select SET to Practice</h1>
-    </div>
-   <div class="row">
+        <p class="text-center">Select a Set to Practice</p>
 
-         {% for course in courses %}
+        <div class="row">
+            {% for course in courses %}
             <div class="col-lg-3">
-                <a href="/{{course.id}}" class="btn btn-primary">{{ course.course_name }}</a>
-            </div>
-        {% endfor %}
-    </div> 
+                <a href="/{{course.id}}" class="btn btn-primary">{{course.course_name}}</a>
+                        </div>
 
-    
+            {% endfor %}
+        </div>
+
+    </div>
    
-         <!-- <p>
-         {% for course in courses %}
-            
-                <a href="/{{course.id}}" class="btn btn-primary">{{ course.question }}</a>
-            
-        {% endfor %}
-    </p> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>        
 </body>
 </html>

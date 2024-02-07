@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+    }
+    #app {
+      margin-top: 50px;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .question {
+      margin-top: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      padding: 15px;
+      background-color: #ffffff;
+      position: relative;
+    }
+    .options {
+      margin-top: 15px;
+    }
+    .options label {
+      display: block;
+      border: 1px solid #ced4da;
+      border-radius: 6px;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      position: relative;
+      background-color: #f2f2f2;
+    }
+    .options label:hover {
+      background-color: #e6e6e6;
+    }
+    .options input[type="radio"] {
+      position: absolute;
+      left: -9999px;
+    }
+    .options input[type="radio"] + label {
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+    }
+    .options input[type="radio"] + label:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      border: 1px solid #ced4da;
+      border-radius: 50%;
+      background-color: #fff;
+    }
+    .options input[type="radio"]:checked + label:before {
+      background-color: #007bff;
+    }
+    .options input[type="radio"] + label:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #fff;
+      opacity: 0;
+    }
+    .options input[type="radio"]:checked + label:after {
+      opacity: 1;
+    }
+    .btn-submit {
+      margin-top: 20px;
+      width: 100%;
+    }
+    .question p {
+      font-weight: bold;
+      color: #333333;
+      margin-bottom: 10px;
+    }
+    h2 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container">
+    <h2>Model Examination</h2>
+    <form @submit.prevent="handleSubmit()" action="/api/check_score/" method="POST">
+      <div v-for="(question,index) in questions" :key="question.id" class="question">
+        <p><strong>[[index + 1]].</strong> [[question.question]]</p>
+        <div v-for="(option , i) in question.options" class="options">
+          <input :id="'radio-'+question.id+'-'+i" @change="check(index , i , question.id)" type="radio" :value="option" :name="'option-'+question.id">
+          <label :for="'radio-'+question.id+'-'+i">[[option]]</label>
+        </div>
+        <p :id="'show_message-'+question.id"></p>
+      </div>
+      <button class="btn btn-primary btn-submit" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#app',
+        data: {
+            message: 'Hello Vue!',
+            course_id: '{{id}}',
+            questions: [],
+            solutions: []
+        },
+        methods: {
+            check(question_index, option_index, id) {
+                var question = this.questions[question_index];
+                var element = document.getElementById(`show_message-${id}`);
+                var radios = document.querySelectorAll(`#radio-${id}`);
+                for (var i = 0; i < radios.length; i++) {
+                    radios[i].disabled = true;
+                }
+                var solution = {
+                    'question_id': id,
+                    'option': option_index + 1
+                };
+                this.solutions.push(solution);
+            },
+            handleSubmit() {
+                fetch('/api/check_score/', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                       data: JSON.stringify(this.solutions),
+                       course_id: this.course_id
+                    })
+                })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return res.json();
+                })
+                .then(result => {
+                    console.log(result);
+                    alert('Quiz submitted successfully!');
+                    window.location = '/view_score';
+                })
+                .catch(error => {
+                    console.error('There was an error with the fetch request:', error);
+                });
+            }
+        },
+        mounted() {
+            fetch(`/api/${this.course_id}`)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return res.json();
+            })
+            .then(result => {
+                this.questions = result;
+            })
+            .catch(error => {
+                console.error('There was an error fetching questions:', error);
+            });
+        }
+    });
+  </script>
+</body>
+</html>
