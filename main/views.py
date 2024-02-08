@@ -3,10 +3,11 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from .models import ScoreBoard, Question, TeamMember, Course, Notice  # Import Notice model
+from .models import ScoreBoard, Question, TeamMember, Course, Notice
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 import json
+
 def index(request):
     return render(request, 'index.html')
 def about(request):
