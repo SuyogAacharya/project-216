@@ -106,32 +106,24 @@
   <div id="app" class="mt-5 pt-5">
     <div class="container">
         <form @submit.prevent="handleSubmit()">
-            <div v-for="(question,index) in questions" :key="question.id" class="mt-5">
+            <div v-for="(question,index) in questions" :key="question.id" class="mt-5 question">
                 <p>[[index + 1]]. [[question.question]]</p>
-                <div v-for="(option , i) in question.options">
-                    <input :id="'radio-'+question.id" @change="check(index , i , question.id)" type="radio"
+                <div class="options" v-for="(option , i) in question.options">
+                    <input :id="'radio-'+question.id+'-'+i" @change="check(index , i , question.id)" type="radio"
                         :value="option" :name="'option-'+question.id">
-                    [[option]]
+                    <label :for="'radio-'+question.id+'-'+i">[[option]]</label>
                 </div>
                 <p :id="'show_message-'+question.id"></p>
             </div>
 
-            <button class="btn btn-danger" type="submit">Submit</button>
+            <button class="btn btn-danger btn-submit" type="submit">Submit</button>
         </form>
-
     </div>
-</div>
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
-
-
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-
-<script>
+  <script>
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app',
@@ -161,7 +153,6 @@
                 this.solutions.push(solution)
             },
             handleSubmit() {
-        
                 fetch('/api/check_score', {
                     method: 'POST',
                     headers: {
@@ -173,26 +164,22 @@
                        course_id : this.course_id
                     })
                 })
-            .then(res => res.json())
-            .then(result => {
-                console.log(result)
-                window.location = '/view_score'
-            })
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    window.location = '/view_score'
+                })
+            }
+        },
 
+        mounted() {
+            fetch(`/api/${this.course_id}`)
+                .then(res => res.json())
+                .then(result => {
+                    this.questions = result
+                })
         }
-    },
-
-    mounted() {
-
-        fetch(`/api/${this.course_id }`)
-            .then(res => res.json())
-            .then(result => {
-                this.questions = result
-
-            })
-
-    }
     });
-</script>
+  </script>
 </body>
 </html>
