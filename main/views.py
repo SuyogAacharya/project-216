@@ -13,12 +13,14 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
-def course_grid_2(request):  
-    return render(request, 'course-grid-2.html')
+def course_grid_2(request):
+    medical_courses = MedicalCourse.objects.all()  # Retrieve all MedicalCourse objects
+    return render(request, 'course-grid-2.html', {'medical_courses': medical_courses})
 
-def course_grid_3(request):  
-    return render(request, 'course-grid-3.html')
-
+def course_grid_3(request):
+    ca_courses = CACourse.objects.all()  # Retrieve all CACourse objects
+    return render(request, 'course-grid-3.html', {'ca_courses': ca_courses})
+    
 def course_grid_4(request):  
     return render(request, 'course-grid-4.html')
 

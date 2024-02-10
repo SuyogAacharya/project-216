@@ -71,4 +71,29 @@ class QuestionbankScoreBoard(models.Model):
 
    
 
+class MedicalCourse(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField(upload_to='course_images/')
+    duration_months = models.IntegerField()
+    seats_available = models.IntegerField()
+    team_members = models.IntegerField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+
+    def __str__(self):
+        return self.title
+
+
+class CACourse(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    image = models.ImageField(upload_to='course_images/')
+    duration_months = models.IntegerField()
+    seats_available = models.IntegerField()
+    team_members = models.IntegerField()
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+
+    def __str__(self):
+        return self.title
+
 

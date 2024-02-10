@@ -1,280 +1,116 @@
 {% load static %}
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
-    <!-- Basic -->
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
-    <!-- Mobile Metas -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-     <!-- Site Metas -->
-    <title>Entrance Master-Medical course</title>  
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Entrance Master - Medical Courses</title>
+    <meta name="description" content="Entrance Master offers a range of medical courses to prepare students for entrance exams.">
+    <meta name="author" content="Entrance Master">
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="{% static 'assets/logo.jpg' %}" type="image/x-icon" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/logo.jpg' %}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{% static 'assets/logo.jpg' %}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
-    <!-- Site CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="{% static 'assets/style.css' %}">
-    <!-- ALL VERSION CSS -->
-    <link rel="stylesheet" href="{% static 'assets/css/versions.css' %}">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
-
-    <!-- Modernizer for Portfolio -->
-    <script src="{% static 'assets/js/modernizer.js' %}"></script>
-
-
 </head>
-<body class="host_version"> 
 
+<body class="host_version">
 
-
-    
-
-     <!-- Start header -->
-	<header class="top-navbar">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="/">
-				
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbars-host">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-						<li class="nav-item active"><a class="nav-link" href="{% url 'main:about' %}">About Us</a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Course </a>
-							<div class="dropdown-menu" aria-labelledby="dropdown-a">
-								<a class="dropdown-item" href="{% url 'main:course_grid_2' %}">Medical course</a>
-								<a class="dropdown-item" href="{% url 'main:course_grid_3' %}">CA course </a>
-								<a class="dropdown-item" href="{% url 'main:course_grid_4' %}">Other course </a>
-							</div>
-						</li>
-					
-						<li class="nav-item"><a class="nav-link" href="{% url 'main:team' %}">Teams</a></li>
-						
-						
+    <!-- Start header -->
+    <header class="top-navbar">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <!-- Your Logo Image or Text Here -->
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host"
+                    aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbars-host">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'main:about' %}">About Us</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Courses</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                <a class="dropdown-item" href="{% url 'main:course_grid_2' %}">Medical Courses</a>
+                                <a class="dropdown-item" href="{% url 'main:course_grid_3' %}">CA Courses</a>
+                                <a class="dropdown-item" href="{% url 'main:course_grid_4' %}">Other Courses</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'main:team' %}">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'main:signin' %}">Login/Register</a></li>
-					</ul>
-					
-				</div>
-			</div>
-		</nav>
-	</header>
-	
-	<div class="all-title-box">
-		<div class="container text-center">
-			<h1>Medical course</h1>
-		</div>
-	</div>
-	
-    <div id="overviews" class="section wb">
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End header -->
+
+    <!-- Page Title Section -->
+    <div class="all-title-box">
+        <div class="container text-center">
+            <h1>Medical Courses</h1>
+        </div>
+    </div>
+    <!-- End Page Title Section -->
+
+    <!-- Course Section -->
+    <div id="course-section" class="section wb">
         <div class="container">
             <div class="section-title row text-center">
                 <div class="col-md-8 offset-md-2">
-                    <p class="lead">Below mentioned course are all based for medical entrance provided by the Entrance Master.</p>
+                    <p class="lead">Explore our medical courses designed to help you excel in entrance exams.</p>
                 </div>
-            </div><!-- end title -->
+            </div>
 
-			<hr class="invis"> 
-
-            <div class="row"> 
-                <div class="col-lg-6 col-md-6 col-12">
+            <div class="row">
+                {% for medical_course in medical_courses %}
+                <div class="col-lg-6 col-md-6 col-12 mb-4">
                     <div class="course-item">
-						<div class="image-blog">
-							<img src="{% static 'assets/images/mbbs entrancephoyo.jpg' %}" alt="" class="img-fluid">
-						</div>
-						<div class="course-br">
-							<div class="course-title">
-								<h2><a href="#" title="">Complete CEE Entrance Course.</a></h2>
-							</div>
-							<div class="course-desc">
-								<p>
-									🌟 Ace Medical Entrance Exams with Ease! Our Comprehensive CEE Entrance
-									 Course provides live classes and extra practice materials for all subjects 
-									 over 8 months. Join us and secure your success! 📚👩‍⚕️ <br>
-									<span>Course content</span><br>
-								1.MBBS Entrance<br>
-								2.BDS Entrance<br>
-								3.Nursing Entrance<br>
-								4.B-pharma Entrance<br>
-								🎯 With our specialized resources, conquer each course and elevate your readiness for the entrance examinations! 💡👩‍🔬</p>
-							</div>
-							<div class="course-rating">
-								4.8
-								<i class="fa fa-star"></i>	
-								<i class="fa fa-star"></i>	
-								<i class="fa fa-star"></i>	
-								<i class="fa fa-star"></i>	
-								<i class="fa fa-star-half"></i>								
-							</div>
-						</div>
-						<div class="course-meta-bot">
-							<ul>
-								<li><i class="fa fa-calendar" aria-hidden="true"></i> 8 Month</li>
-								<li><i class="fa fa-users" aria-hidden="true"></i> 1200 Seats</li>
-								<li><i class="fa fa-user" aria-hidden="true"></i> 10+ Team member</li>
-								<li><i class="fa fa-money" aria-hidden="true"></i> Rs6,999/-/-</li>
-							</ul>
-						</div>
-					</div>
-                </div><!-- end col -->
+                        <div class="image-blog">
+                            <img src="{{ medical_course.image.url }}" alt="{{ medical_course.title }}" class="img-fluid">
+                        </div>
+                        <div class="course-br">
+                            <div class="course-title">
+                                <h2><a href="#" onclick="redirectToLogin()">{{ medical_course.title }}</a></h2>
+                            </div>
+                            <div class="course-desc">
+                                <p>{{ medical_course.description }}</p>
+                                <span>Course Content:</span>
+                                <p>{{ medical_course.content }}</p>
+                            </div>
+                            <div class="course-rating">
+                                <!-- Your Rating Display Here -->
+                            </div>
+                        </div>
+                        <div class="course-meta-bot">
+                            <ul>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i> Duration: {{ medical_course.duration_months }} Months</li>
+                                <li><i class="fa fa-users" aria-hidden="true"></i> Seats: {{ medical_course.seats_available }}</li>
+                                <li><i class="fa fa-user" aria-hidden="true"></i> Team Members: {{ medical_course.team_members }}</li>
+                                <li><i class="fa fa-money" aria-hidden="true"></i> Price: Rs{{ medical_course.price }}/-</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- End Course Section -->
 
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="course-item">
-						<div class="image-blog">
-							<img src="{% static 'assets/images/chapterwisecourse.jpg' %}" alt="" class="img-fluid">
-						</div>
-						<div class="course-br">
-							<div class="course-title">
-								<h2><a href="#" title="">Chapter Wise Course.</a></h2>
-							</div>
-							<div class="blog-desc">
-								<p>
-									🔍 Dive into our course's subject-specific pre-recorded lectures! Overcome doubts and supercharge your entrance preparation effortlessly. 🚀
-
-📚 Explore our comprehensive course content, meticulously designed to cover:<br>
-1. Complete Physics<br>
-2. Complete Chemistry<br>
-3. Complete Zoology<br>
-4. Complete Botany<br>
-5. Complete MAT (Mental  Ability Test) (Rs 499/-)<br>
-
-🎯 With our specialized resources, conquer each subject and elevate your readiness for the entrance examinations! 💡👩‍🔬
-							</p></div>
-							<div class="course-rating">
-								5.0
-								<i class="fa fa-star"></i>	
-								<i class="fa fa-star"></i>	
-								<i class="fa fa-star"></i>	
-								<i class="fa fa-star"></i>	
-								<i class="fa fa-star"></i>								
-							</div>
-						</div>
-						<div class="course-meta-bot">
-							<ul>
-								<li><i class="fa fa-calendar" aria-hidden="true"></i> 8 Month</li>
-								<li><i class="fa fa-users" aria-hidden="true"></i>5000+ Seats</li>
-								<li><i class="fa fa-user" aria-hidden="true"></i> 10+ Team member</li>
-								<li><i class="fa fa-money" aria-hidden="true"></i> Rs1,999/- per course</li>
-							</ul>
-						</div>
-					</div>
-                </div><!-- end col -->	
-				<hr class="invis"> 
-
-				<div class="row"> 
-					<div class="col-lg-6 col-md-6 col-12">
-						<div class="course-item">
-							<div class="image-blog">
-								<img src="{% static 'assets/images/fasttrackRevision.jpg' %}" alt="" class="img-fluid">
-							</div>
-							<div class="course-br">
-								<div class="course-title">
-									<h2><a href="#" title="">Fast Track Course</a></h2>
-								</div>
-								<div class="course-desc">
-									<p>
-										💨 Accelerate Your Preparation with Rapid Revision Classes! Dive into our fast-paced, subject-specific sessions tailored for quick yet comprehensive review. 📚
-
-🔍 Experience our meticulously curated Rapid Revision Course, covering:<br>
-1. Rapid Physics Review<br>
-2. Rapid Chemistry Recap<br>
-3. Rapid Zoology Overview<br>
-4. Rapid Botany Recap<br>
-5. Rapid MAT (Mental Ability Test) Refresher<br>
-
-🚀 Fast-track your understanding and solidify key concepts, ensuring a swift and effective preparation for your entrance examinations! 💡👨‍🏫</p>
-								</div>
-									<div class="course-rating">
-										5.0
-										<i class="fa fa-star"></i>	
-										<i class="fa fa-star"></i>	
-										<i class="fa fa-star"></i>	
-										<i class="fa fa-star"></i>	
-										<i class="fa fa-star"></i>								
-									</div>
-								</div>
-							<div class="course-meta-bot">
-								<ul>
-									<li><i class="fa fa-calendar" aria-hidden="true"></i> 3 Month</li>
-									<li><i class="fa fa-users" aria-hidden="true"></i> 1200 Seats</li>
-									<li><i class="fa fa-money" aria-hidden="true"></i> Rs4,999/-</li>
-									
-								</ul>
-							</div>
-						</div>
-					</div><!-- end col -->
-					<div class="col-lg-6 col-md-6 col-12">
-						<div class="course-item">
-							<div class="image-blog">
-								<img src="{% static 'assets/images/oneshotcourse.jpg' %}" alt="" class="img-fluid">
-							</div>
-							<div class="course-br">
-								<div class="course-title">
-									<h2><a href="#" title="">Free One Shot Lecture.</a></h2>
-								</div>
-								<div class="blog-desc">
-									<p>
-										🔍 Dive into our course's subject-specific pre-recorded lectures! Overcome doubts and supercharge your entrance 
-										preparation effortlessly. 🚀
-										🌟 Enhance Your Preparation with an Intensive Free-One Shot Lecture! Delve into a focused, condensed session 
-										designed to provide a comprehensive overview in one go. 📚🔍 Immerse yourself in our exclusive Free-One
-										 Shot Lecture covering:<br>
-
-										1. In-depth Physics Insights<br>
-										2. Comprehensive Chemistry Overview<br>
-										3. Extensive Zoology Breakdown<br>
-										4. Thorough Botany Summary<br>
-										5. Concise MAT (Mental Ability Test) Masterclass<br>
-										
-										
-									</p></div>
-								<div class="course-rating">
-									5.0
-									<i class="fa fa-star"></i>	
-									<i class="fa fa-star"></i>	
-									<i class="fa fa-star"></i>	
-									<i class="fa fa-star"></i>	
-									<i class="fa fa-star"></i>								
-								</div>
-							</div>
-							<div class="course-meta-bot">
-								<ul>
-									<li><i class="fa fa-calendar" aria-hidden="true"></i> 8 Month</li>
-									<li><i class="fa fa-users" aria-hidden="true"></i>5000+ Seats</li>
-									<li><i class="fa fa-user" aria-hidden="true"></i> 10+ Team member</li>
-									<li><i class="fa fa-money" aria-hidden="true"></i> Rs 0.00/-</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-            </div><!-- end row -->
-			
-			
-	
-    </div><!-- end section -->
-
-   
-    </div><!-- end section -->
-
-	<footer class="footer">
+    <!-- Footer Section -->
+    <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-xs-12">
@@ -282,24 +118,18 @@
                         <div class="widget-title">
                             <h3>About US</h3>
                         </div>
-                        <p>Entrance Master is one of the leading<br> educational platforms providing virtual classes, mainly for NEB / Common Entrance Examinations, Chartered Accountancy, and other courses.
+                        <p>Entrance Master is one of the leading educational platforms providing virtual classes, mainly for NEB / Common Entrance Examinations, Chartered Accountancy, and other courses. Producing thousands of successful students in every batch, EM is offering multiple courses at a minimal cost with renowned professional tutors. Join us on this revolutionary educational journey.</p>
+                        <div class="footer-right">
+                            <ul class="footer-links-soi">
+                                <li><a href="https://www.facebook.com/people/Entrance-Master/61553562205688/?mibextid=ZbWKwL"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.youtube.com/@Sulav_acharya"><i class="fa fa-youtube"></i></a></li>
+                                <li><a href="https://t.me/+rrCzEaO7r65hNDA1"><i class="fa fa-telegram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-                            Producing thousands of successful students in every batch, EM is offering multiple courses at a minimal cost with renowned professional tutors.
-                            
-                            Join us on this revolutionary educational journey.</p>   
-						<div class="footer-right">
-							<ul class="footer-links-soi">
-								<li><a href="https://www.facebook.com/people/Entrance-Master/61553562205688/?mibextid=ZbWKwL"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="https://www.youtube.com/@Sulav_acharya"><i class="fa fa-youtube"></i></a></li>
-								<li><a href="https://www.youtube.com/@Sulav_acharya"><i class="fa fa-youtube"></i></a></li>
-								<li><a href="https://t.me/+rrCzEaO7r65hNDA1"><i class="fa fa-telegram"></i></a></li>
-								
-							</ul><!-- end links -->
-						</div>						
-                    </div><!-- end clearfix -->
-                </div><!-- end col -->
-
-				<div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-xs-12">
                     <div class="widget clearfix">
                         <div class="widget-title">
                             <h3>Information Link</h3>
@@ -307,52 +137,42 @@
                         <ul class="footer-links">
                             <li><a href="/">Home</a></li>
                             <li><a href="{% url 'main:course_grid_2' %}">Medical course</a></li>
-							<li><a href="{% url 'main:course_grid_3' %}">CA course</a></li>
-							<li><a href="{% url 'main:course_grid_4' %}">other course</a></li>
-							<li><a href="{% url 'main:about' %}">About</a></li>
-							
-                        </ul><!-- end links -->
-							
-                        </ul><!-- end links -->
-                    </div><!-- end clearfix -->
-                </div><!-- end col -->
-				
+                            <li><a href="{% url 'main:course_grid_3' %}">CA course</a></li>
+                            <li><a href="{% url 'main:course_grid_4' %}">other course</a></li>
+                            <li><a href="{% url 'main:about' %}">About</a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="col-lg-4 col-md-4 col-xs-12">
                     <div class="widget clearfix">
                         <div class="widget-title">
                             <h3>Contact Details</h3>
                         </div>
-
                         <ul class="footer-links">
                             <li><a href="mailto:entrancemaster2080@gmail.com">entrancemaster2080@gmail.com</a></li>
-                            <li><a href="www.entrancemaster.com.np">www.entrancemaster.com.np</a></li>
-                            
+                            <li><a href="http://www.entrancemaster.com.np">www.entrancemaster.com.np</a></li>
                             <li>+977-9815988048</li>
-                        </ul><!-- end links -->
-                    </div><!-- end clearfix -->
-                </div><!-- end col -->
-				
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </footer><!-- end footer -->
-
-    <div class="copyrights">
-        <div class="container">
-            <div class="footer-distributed">
-                <div class="footer-center">                   
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2023 <a href="/">Entrancemaster.com.np</a></p>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div><!-- end container -->
-    </div><!-- end copyrights -->
+        </div>
+    </footer>
+    <!-- End Footer Section -->
 
-    <a href="" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+    <!-- Go to Top Button -->
+    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
-    <!-- ALL JS FILES -->
+    <!-- JavaScript Files -->
     <script src="{% static 'assets/js/all.js' %}"></script>
-    <!-- ALL PLUGINS -->
     <script src="{% static 'assets/js/custom.js' %}"></script>
-
+    <script>
+        function redirectToLogin() {
+            alert("Please login to continue.");
+            window.location.href = "{% url 'main:signin' %}";
+        }
+    </script>
 </body>
+
 </html>
-{% endblock %}

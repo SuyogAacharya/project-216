@@ -1,7 +1,16 @@
 from django.contrib import admin
 from .models import *
 
-# Register your models here.
+class MedicalCourseAdmin(admin.ModelAdmin):
+    list_display = ('title', 'duration_months', 'seats_available', 'team_members', 'price')
+    search_fields = ('title', 'description')
+
+class CACourseAdmin(admin.ModelAdmin):
+    list_display = ('title', 'duration_months', 'seats_available', 'team_members', 'price')
+    search_fields = ('title', 'description')
+
+admin.site.register(MedicalCourse, MedicalCourseAdmin)
+admin.site.register(CACourse, CACourseAdmin)  # Corrected registration
 admin.site.register(Course)
 admin.site.register(Question)
 admin.site.register(ScoreBoard)
