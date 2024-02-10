@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz App</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -102,23 +103,35 @@
   </style>
 </head>
 <body>
-  <div id="app" class="container">
-    <h2>Model Examination</h2>
-    <form @submit.prevent="handleSubmit()" action="/api/check_score/" method="POST">
-      <div v-for="(question,index) in questions" :key="question.id" class="question">
-        <p><strong>[[index + 1]].</strong> [[question.question]]</p>
-        <div v-for="(option , i) in question.options" class="options">
-          <input :id="'radio-'+question.id+'-'+i" @change="check(index , i , question.id)" type="radio" :value="option" :name="'option-'+question.id">
-          <label :for="'radio-'+question.id+'-'+i">[[option]]</label>
-        </div>
-        <p :id="'show_message-'+question.id"></p>
-      </div>
-      <button class="btn btn-primary btn-submit" type="submit">Submit</button>
-    </form>
-  </div>
+  <div id="app" class="mt-5 pt-5">
+    <div class="container">
+        <form @submit.prevent="handleSubmit()">
+            <div v-for="(question,index) in questions" :key="question.id" class="mt-5">
+                <p>[[index + 1]]. [[question.question]]</p>
+                <div v-for="(option , i) in question.options">
+                    <input :id="'radio-'+question.id" @change="check(index , i , question.id)" type="radio"
+                        :value="option" :name="'option-'+question.id">
+                    [[option]]
+                </div>
+                <p :id="'show_message-'+question.id"></p>
+            </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-  <script>
+            <button class="btn btn-danger" type="submit">Submit</button>
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+<script>
     var app = new Vue({
         delimiters: ['[[', ']]'],
         el: '#app',
@@ -129,63 +142,57 @@
             solutions: []
         },
         methods: {
+            greet: function (name) {
+                console.log('Hello from ' + name + '!')
+            },
             check(question_index, option_index, id) {
-                var question = this.questions[question_index];
-                var element = document.getElementById(`show_message-${id}`);
-                var radios = document.querySelectorAll(`#radio-${id}`);
+                var question = this.questions[question_index]
+                var element = document.getElementById(`show_message-${id}`)
+
+                var radios = document.querySelectorAll(`#radio-${id}`)
                 for (var i = 0; i < radios.length; i++) {
-                    radios[i].disabled = true;
+                    radios[i].disabled = true
                 }
+
                 var solution = {
                     'question_id': id,
                     'option': option_index + 1
-                };
-                this.solutions.push(solution);
+                }
+                this.solutions.push(solution)
             },
             handleSubmit() {
-                fetch('/api/check_score/', {
+        
+                fetch('/api/check_score', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                       data: JSON.stringify(this.solutions),
-                       course_id: this.course_id
+                       data : JSON.stringify(this.solutions),
+                       course_id : this.course_id
                     })
                 })
-                .then(res => {
-                    if (!res.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return res.json();
-                })
-                .then(result => {
-                    console.log(result);
-                    alert('Quiz submitted successfully!');
-                    window.location = '/view_score';
-                })
-                .catch(error => {
-                    console.error('There was an error with the fetch request:', error);
-                });
-            }
-        },
-        mounted() {
-            fetch(`/api/${this.course_id}`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return res.json();
-            })
+            .then(res => res.json())
             .then(result => {
-                this.questions = result;
+                console.log(result)
+                window.location = '/view_score'
             })
-            .catch(error => {
-                console.error('There was an error fetching questions:', error);
-            });
+
         }
+    },
+
+    mounted() {
+
+        fetch(`/api/${this.course_id }`)
+            .then(res => res.json())
+            .then(result => {
+                this.questions = result
+
+            })
+
+    }
     });
-  </script>
+</script>
 </body>
 </html>

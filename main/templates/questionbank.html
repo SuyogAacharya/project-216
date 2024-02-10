@@ -1,798 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-       <!-- Site Icons -->
-       <link rel="shortcut icon" href="logo.jpg" type="image/x-icon" />
-       <link rel="apple-touch-icon" href="logo.jpg">
 <head>
-  <meta charset="UTF-8">
-  <title>Quiz Topics</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <style>
-   body {
-      font-family: 'Arial', sans-serif;
-      margin: 10px;
-      padding: 0;
-      background-color: #f7f7f7;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Exam</title>
+    <!-- Add the Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+            padding-top: 20px; /* Increased padding on top */
+            padding-bottom: 50px; /* Increased padding on bottom */
+        }
 
-    
-
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 30px;
-      color: #333;
-    }
-
-
-    .topics, .subtopics {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      
-    }
-
-    .topic, .subtopic {
-      border: 2px solid #3498db;
-      padding: 20px;
-      width: 200px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border-radius: 8px;
-      font-size: 1.2em;
-      color: #3498db;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: left;
-      justify-content: space-between;
-    }
-
-    .topic:hover, .subtopic:hover {
-      background-color: #3498db;
-      color: #fff;
-    }
-
-    .topic i, .subtopic i {
-      margin-left: 10px;
-      color: #000;
-    }
-
-     /* Styles for sub-subtopics */
-     .subsubtopics {
-      display: none;
-      position: absolute;
-      top: 350px;
-      left: 250px; /* Position to the right of the sub-topic */
-      width: 180px;
-    }
-
-    .subsubtopic {
-      border: 2px solid #e74c3c;
-      padding: 15px;
-      width: 290px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border-radius: 8px;
-      font-size: 1.1em;
-      color: #e74c3c;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: left;
-      justify-content: space-between;
-      
-    }
-
-    .subsubtopic:hover {
-      background-color: #e74c3c;
-      color: #fff;
-    }
-
-    .subsubtopic i {
-      margin-right:-100px;
-      color: #fff;
-    }
-     /* Header styles */
-     .header {
-            background-color: #0abe0a;
-            color: #f1ebeb;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: relative;
-            text-align: center;
+        /* Header styles */
+        .header {
+            background-color: #0abe0a; /* Green header background */
+            color: #fff; /* White text color */
+            padding: 20px; /* Padding for the header */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for the header */
+            position: relative; /* Positioning */
+            margin-bottom: 30px; /* Added margin bottom */
         }
 
         /* Left arrow styles */
         .left-arrow {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 24px;
-            color: #fff;
-            text-decoration: none;
+            position: absolute; /* Absolute positioning */
+            top: 50%; /* Aligning vertically at the center */
+            left: 10px; /* Left position */
+            transform: translateY(-50%); /* Adjust vertical position */
+            font-size: 24px; /* Font size */
+            color: #fff; /* White color */
+            text-decoration: none; /* Remove underline */
         }
-        h2 {
-      font-size: 2.5em;
-      margin-bottom: 30px;
-      color: #faf6f6;
-    }
-  </style>
+
+        .title {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px; /* Limiting container width for better readability */
+            margin: 0 auto; /* Centering the container */
+        }
+
+        h1 {
+            color: #343a40; /* Dark gray heading color */
+            text-align: center;
+            margin-bottom: 30px; /* Increased margin bottom */
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease; /* Smooth transition */
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px); /* Lift on hover */
+        }
+
+        .topic-title {
+            padding: 10px;
+            background-color: #343a40;
+            color: #fff;
+            border-radius: 0 0 8px 8px; /* Rounded corners for the bottom */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Blue primary button color */
+            border-color: #007bff; /* Blue primary button border color */
+            transition: all 0.3s ease; /* Smooth transition */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            border-color: #0056b3; /* Darker blue border on hover */
+        }
+    </style>
 </head>
 <body>
-   <!-- Header -->
-   <div class="header">
-    <a class="left-arrow" href="{% url 'main:sidebar' %}">&#8592;</a> <!-- Left-facing arrow -->
-    <h2 class="title">Question Bank</h2>
-</div>
-  <div class="container">
-    <h1>Choose a Quiz Topic</h1>
-    <div class="topics">
-        <div class="topic" onclick="toggleSubtopics('physicsSubtopics')">
-          <span>Physics</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="topic" onclick="toggleSubtopics('chemistrySubtopics')">
-          <span>Chemistry</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="topic" onclick="toggleSubtopics('zoologySubtopics')">
-          <span>Zoology</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="topic" onclick="toggleSubtopics('botanySubtopics')">
-          <span>Botany</span>
-          <i class="fas fa-plus"></i>
-        </div>
-      </div>
-      <div class="subtopics" id="physicsSubtopics" style="display: none;">
-        <!-- Physics Subtopics -->
-        <div class="subtopic" onclick="toggleSubsubtopics('mechanicsSubtopics')">
-          <span>Mechanics</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subtopic" onclick="toggleSubsubtopics('heatandthermodynamicssubtopic')">
-          <span>Heat and Thermodynamics</span>
-          <i class="fas fa-plus"></i>
-        </div> 
-        <div class="subtopic" onclick="toggleSubsubtopics('wavesubtopic')">
-          <span>Wave</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subtopic" onclick="toggleSubsubtopics('opticsubtopic')">
-          <span>Optics</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subtopic" onclick="toggleSubsubtopics('currentelectricitysubtopic')">
-          <span>Current and Electricity</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subtopic" onclick="toggleSubsubtopics('Magnetisimsubtopic')">
-          <span>Magnetisim</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subtopic" onclick="toggleSubsubtopics('modernphysicssubtopic')">
-          <span>modern-Physics</span>
-          <i class="fas fa-plus"></i>
-        </div>
-      <div class="subsubtopics" id="mechanicsSubtopics" style="display: none;">
-        <div class="subsubtopic" onclick="redirect('Physical_Quantities.html')">
-          <span>Physical quantities</span>
-          <i class="fas fa-plus"></i>
+    <div class="header">
+        <a class="left-arrow" href="{% url 'main:sidebar' %}">&#8592;</a> <!-- Left-facing arrow -->
+        <h1 class="title">Question Bank </h1>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="mb-4">Select a Set to Start</h2>
+
+        <div class="row">
+            {% for course in Questionbank_courses %}
+            <div class="col-lg-4">
+                <div class="gallery-item">
+                    <a href="/{{course.id}}">
+                        <!-- Placeholder image, replace with actual image -->
+                        <div class="topic-title">{{ course.course_name }}</div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
         </div>
         
-            <div class="subsubtopic" onclick="redirect('vector_question.html')">
-              <span>Vector</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="redirect('motioninonedimensionquestion.html')">
-              <span>Motion in one dimension</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="startQuiz('newtonslawquestion.html')">
-              <span>Newton's law of motion</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="startQuiz('Friction')">
-              <span>Friction</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="startQuiz('Circular motion')">
-              <span>Circular motion</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="startQuiz('Work energy and power')">
-              <span>Work energy and power</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="startQuiz('Gravitational')">
-              <span>Gravitational</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="startQuiz('Rotational Mechanics')">
-              <span>Rotational Mechanics</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="startQuiz('Periodic motion')">
-              <span>Periodic motion</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="startQuiz('Elasticity')">
-              <span>Elasticity</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="subsubtopic" onclick="startQuiz('Fluid Mechanics')">
-              <span>Fluid Mechanics</span>
-              <i class="fas fa-plus"></i>
-            </div>
-          </div>
-          <div class="subsubtopics" id="heatandthermodynamicssubtopic" style="display: none;">
-            <div class="subsubtopic" onclick="redirect('')">
-              <span>Thermometry</span>
-              <i class="fas fa-plus"></i>
-            </div>
-            
-                <div class="subsubtopic" onclick="redirect('')">
-                  <span>Thermal Expansion</span>
-                  <i class="fas fa-plus"></i>
-                </div>
-                <div class="subsubtopic" onclick="startQuiz('')">
-                  <span>Quantity of heat</span>
-                  <i class="fas fa-plus"></i>
-                </div>
-                <div class="subsubtopic" onclick="startQuiz('')">
-                  <span>Transmission of heat</span>
-                  <i class="fas fa-plus"></i>
-                </div>
-                <div class="subsubtopic" onclick="startQuiz('')">
-                  <span>Thermodynamics</span>
-                  <i class="fas fa-plus"></i>
-                </div>
-                <div class="subsubtopic" onclick="startQuiz('')">
-                  <span>Ideal gases</span>
-                  <i class="fas fa-plus"></i>
-                </div>
-                </div>
-                <div class="subsubtopics" id="wavesubtopic" style="display: none;">
-                 
-                  
-                      <div class="subsubtopic" onclick="redirect('')">
-                        <span>Wave</span>
-                        <i class="fas fa-plus"></i>
-                      </div>
-                      <div class="subsubtopic" onclick="startQuiz('')">
-                        <span>Superposition of wave</span>
-                        <i class="fas fa-plus"></i>
-                      </div>
-                      <div class="subsubtopic" onclick="startQuiz('')">
-                        <span>Waves in pipe and string</span>
-                        <i class="fas fa-plus"></i>
-                      </div>
-                      <div class="subsubtopic" onclick="startQuiz('')">
-                        <span>Acoustic phenomenon</span>
-                        <i class="fas fa-plus"></i>
-                      </div>
-                     
-    </div>
-    <div class="subsubtopics" id="opticsubtopic" style="display: none;">
-                 
-                  
-      <div class="subsubtopic" onclick="redirect('')">
-        <span>Reflection at Plane surface</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Refraction at Plane surface </span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Lenses</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Refraction through Prisim</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Photometry</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Velocity of Light</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Waves and Optics</span>
-        <i class="fas fa-plus"></i>
-      </div>
-     </div>
+        
 
-      <div class="subsubtopics" id="currentelectricitysubtopic" style="display: none;">
-                 <div class="subsubtopic" onclick="redirect('')">
-          <span>Current Electricity</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Thermoelectric effect</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Chemical effect of current</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Alternating current</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Electric charge</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Electric Field and potential</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Capacitors</span>
-          <i class="fas fa-plus"></i>
-        </div>
-
-  </div>
-  <div class="subsubtopics" id="Magnetisimsubtopic" style="display: none;">
-    <div class="subsubtopic" onclick="redirect('')">
-<span>Magnetisim</span>
-<i class="fas fa-plus"></i>
-</div>
-<div class="subsubtopic" onclick="startQuiz('')">
-<span>Magnetic Effect of current.</span>
-<i class="fas fa-plus"></i>
-</div>
-<div class="subsubtopic" onclick="startQuiz('')">
-<span>Electromagnetic induction</span>
-<i class="fas fa-plus"></i>
-</div>
-</div>
-<div class="subsubtopics" id="modernphysicssubtopic" style="display: none;">
-  <div class="subsubtopic" onclick="redirect('')">
-<span>Electron</span>
-<i class="fas fa-plus"></i>
-</div>
-<div class="subsubtopic" onclick="startQuiz('')">
-<span>Photons</span>
-<i class="fas fa-plus"></i>
-</div>
-<div class="subsubtopic" onclick="startQuiz('')">
-<span>Quantization of energy</span>
-<i class="fas fa-plus"></i>
-</div>
-<div class="subsubtopic" onclick="startQuiz('')">
-  <span>Nuclear Physics</span>
-  <i class="fas fa-plus"></i>
-  </div>
-  <div class="subsubtopic" onclick="startQuiz('')">
-    <span>Nuclear Reaction.</span>
-    <i class="fas fa-plus"></i>
-    </div>
-    <div class="subsubtopic" onclick="startQuiz('')">
-      <span>semi-conductor</span>
-      <i class="fas fa-plus"></i>
-      </div>
-</div>
- </div>
-    <div class="subtopics" id="chemistrySubtopics" style="display: none;">
-      <div class="subtopic" onclick="toggleSubsubtopics('physicalChemistrySubtopics')">
-        <span>Physical Chemistry</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('inorganicChemistrySubtopics')">
-        <span>Inorganic Chemistry</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('organicChemistrySubtopics')">
-        <span>Organic Chemistry</span>
-        <i class="fas fa-plus"></i>
-      </div>
-    </div>
-
-    <div class="subsubtopics" id="physicalChemistrySubtopics" style="display: none;">
-                 <div class="subsubtopic" onclick="redirect('')">
-          <span>Stoichiometric Calculation</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Atomic Structure</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Radioactive</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>State of Matter</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Chemical Bonding</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Oxidation and Reduction</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Chemical Equillibrium</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Ionic Equillibrium</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Volumetric Analysis</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Electrochemistry</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Chemical Kinetics</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Chemical Thermodynamics</span>
-          <i class="fas fa-plus"></i>
-        </div>
-       </div>
-    
-
-    <div class="subsubtopics" id="inorganicChemistrySubtopics" style="display: none;">
-      <div class="subsubtopic" onclick="redirect('')">
-        <span>Periodic Table</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Hydrogen and Its compound</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Oxygen family</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Carbon Family</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Nitrogen Family</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Halogen family</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Metal and Metallurgy </span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Alkali Metal</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Alkaline Earth Metal</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Coinage metal</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Heavy Metal</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Co-ordinate compound</span>
-        <i class="fas fa-plus"></i>
-      </div>
-     </div>
-  
-    </div>
-
-    <div class="subsubtopics" id="organicChemistrySubtopics" style="display: none;">
-      <div class="subsubtopic" onclick="redirect('')">
-        <span>General Organic Chemistry</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Hydrocarbons</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Alcohol,Phenol and ether.</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Aldehyde and ketone</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Carboxyllic Acids</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Polymers,Dyes and Drugs</span>
-        <i class="fas fa-plus"></i>
-      </div>
-     
-     </div>
-    
-    <div class="subtopics" id="zoologySubtopics" style="display: none;">
-      <div class="subtopic" onclick="redirect('originandevolutionquestion.html')">
-        <span>origin and evolution</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('phylumsubtopic')">
-        <span>Phylum</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('bofsubtopic')">
-        <span>Biology of the following</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('Humansystemsubtopic')">
-        <span>Human System</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('Animaladaptation')">
-        <span>Animaladaptation</span>
-        <i class="fas fa-plus"></i>
-      </div>
-    </div>
-    <div class="subsubtopics" id="phylumsubtopic" style="display: none;">
-      <div class="subsubtopic" onclick="redirect('protozoaquestion.html')">
-        <span>Protozoa</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Porifera</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Coelenterata</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Platyhelminthes</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Nematodes</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Annelida</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Arthopoda </span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Mollusca</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Echinodermata</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Chordata</span>
-        <i class="fas fa-plus"></i>
-      </div>
-     
-     </div>
-     <div class="subsubtopics" id="bofsubtopic" style="display: none;">
-      <div class="subsubtopic" onclick="redirect('')">
-        <span>Plasmodium</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Paramecium</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Earthworm</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subsubtopic" onclick="startQuiz('')">
-        <span>Frog</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      </div>
-      <div class="subsubtopics" id="Humansystemsubtopic" style="display: none;">
-        <div class="subsubtopic" onclick="redirect('')">
-          <span>Tissue</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Respiratory System</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Circulatory sysytem</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>CNS</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Reproductive system</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Excretory system</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Digestive system </span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Sense organ</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Endocrinology</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Disease</span>
-          <i class="fas fa-plus"></i>
-        </div>
-       
-       </div>
-       <div class="subsubtopics" id="Biodiversitysubtopic" style="display: none;">
-        <div class="subsubtopic" onclick="redirect('')">
-          <span>Biomolecule</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Plant diversity</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Virus</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Bacteria</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Algae</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Fungi</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Lichens </span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Bryophyta</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Pteridophyta</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Gymnosperm</span>
-          <i class="fas fa-plus"></i>
-        </div>
-        <div class="subsubtopic" onclick="startQuiz('')">
-          <span>Angisoperm</span>
-          <i class="fas fa-plus"></i>
-        </div>
-       
-       </div>
-  </div>
-  <div class="subtopics" id="botanySubtopics" style="display: none;">
-    <div class="subtopic" onclick="toggleSubsubtopics('')">
-      <span>Genetics</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('')">
-        <span>Cell Biology</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('')">
-        <span>Plant Anatomy and Physiology</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('Biodiversitysubtopic')">
-        <span>Biodiversity</span>
-        <i class="fas fa-plus"></i>
-      </div>
-      <div class="subtopic" onclick="toggleSubsubtopics('')">
-        <span>Ecology and Biotechnology</span>
-        <i class="fas fa-plus"></i>
-      </div>
-    </div> 
-    <script>
-      function startQuiz(topic) {
-        alert('Starting ' + topic + ' Quiz!');
-        // Logic to start the quiz for the selected sub-subtopic
-      }
-    
-      function toggleSubtopics(id) {
-        const subtopics = document.getElementsByClassName('subtopics');
-        for (let i = 0; i < subtopics.length; i++) {
-          if (subtopics[i].id === id) {
-            subtopics[i].style.display = subtopics[i].style.display === 'block' ? 'none' : 'block';
-          } else {
-            subtopics[i].style.display = 'none';
-          }
-        }
-      }
-    
-      function toggleSubsubtopics(id) {
-        const subsubtopics = document.getElementsByClassName('subsubtopics');
-        for (let i = 0; i < subsubtopics.length; i++) {
-          if (subsubtopics[i].id === id) {
-            subsubtopics[i].style.display = subsubtopics[i].style.display === 'block' ? 'none' : 'block';
-          } else {
-            subsubtopics[i].style.display = 'none';
-          }
-        }
-      }
-    
-      function redirect(page) {
-        window.location.href = page;
-      }
-    </script>
-    
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-  
-	// ]]>
-</script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>        
 </body>
 </html>
