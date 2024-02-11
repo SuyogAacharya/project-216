@@ -1,7 +1,4 @@
-
-{% load static %}  <!-- Load static files for CSS -->
-
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,210 +9,221 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <!-- Site CSS -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <!-- ALL VERSION CSS -->
-    <link rel="stylesheet" href="{% static 'css/versions.css' %}">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <!-- Site Icons -->
     <link rel="shortcut icon" href="{% static 'logo.jpg' %}" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{% static 'logo.jpg' %}">
-
     <style>
-       html,
-body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
 
-/* Global styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    overflow-x: hidden;
-    margin: 0;
-}
+        /* Global styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            overflow-x: hidden;
+            margin: 0;
+        }
 
-/* Header */
-header {
-    background-color: #0abe0a;
-    color: #ecf0f1;
-    text-align: center;
-    padding: 20px 0;
-}
+        /* Header */
+        header {
+            background-color: #0abe0a;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 20px 0;
+        }
 
-header h1 {
-    margin: 0;
-    font-size: 36px;
-}
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
 
-/* Container for the student profile */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Align items to the left */
-    padding: 20px;
-    position: relative;
-}
+        /* Container for the student profile */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the left */
+            padding: 20px;
+            position: relative;
+        }
 
-/* Welcome message */
-.welcome-box {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 20px;
-    position: relative;
-}
+        /* Welcome message */
+        .welcome-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            position: relative;
+        }
 
-.welcome-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    position: relative;
-}
+        .welcome-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+        }
 
-/* Welcome text */
-.welcome-text {
-    position: absolute;
-    top: 80px; /* Adjust the top margin */
-    left: 60px; /* Adjust the left margin */
-    font-size: 18px;
-    color: rgb(136, 130, 130);
+        /* Welcome text */
+        .welcome-text {
+            position: absolute;
+            top: 80px; /* Adjust the top margin */
+            left: 60px; /* Adjust the left margin */
+            font-size: 18px;
+            color: rgb(136, 130, 130);
+        }
 
-}
+        /* Circular student photo */
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #0c0c0c;
+            position: relative;
+            margin-bottom: 30px;
+            margin-top: -100px;
+            margin-left: 20px;
+        }
 
-/* Circular student photo */
-.profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid #0c0c0c;
-    position: relative;
-    margin-bottom: 30px;
-    margin-top: -100px;
-    margin-left: 20px;
-     
-}
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
 
-.profile-picture img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
+        /* Profile Details */
+        .profile-details {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            align-self: flex-start;
+            margin-top: -45px;
+            margin-left: 30px;
+        }
 
-/* Profile Details */
-.profile-details {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    align-self: flex-start; 
-    margin-top: -45px;
-    margin-left: 30px;
-}
+        /* Profile Form */
+        .profile-form {
+            margin-top: 20px;
+            text-align: center;
+        }
 
-/* Profile Form */
-.profile-form {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.btn {
-    padding: 10px 20px;
-    background-color: #0abe0a;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #0d8c0a;
-}
-/* Camera Icon */
-.camera-icon {
-    position: absolute;
-    bottom: -15px; /* Adjust the distance from the bottom as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
-    border-radius: 50%;
-    width: 30px; /* Adjust the size of the camera icon */
-    height: 30px; /* Adjust the size of the camera icon */
-    display: none; /* Initially hide the camera icon */
-}
-
-.camera-icon:hover {
-    cursor: pointer;
-}
-
-.camera-icon-img {
-    width: 80%;
-    height: auto;
-    display: block;
-    margin: auto;
-}
-
-.profile-picture:hover .camera-icon {
-    display: block; /* Show the camera icon when profile picture is hovered over */
+        .btn {
+            margin-top: -20px;
+            margin-left: 50px;
+          
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #ffffff;
+        }
+        /* Camera icon */
+#upload-button {
+    display: none;
 }
 
 
     </style>
 </head>
 <body>
-  
-    <!-- Header -->
-    <header>
-        <h1>Welcome to Entrance Master!</h1>
-    </header>
 
-    <!-- Student Profile -->
-    <div class="container">
-        <!-- Welcome Message with Image -->
-        <div class="welcome-box">
-            <img src="{% static 'assets/images/Welcome_image.jpg' %}" alt="Welcome Image" class="welcome-image">
-            <div class="welcome-text">Welcome,{{ student_profile.user.get_full_name }}</div> <!-- Display user's username -->
-        </div>
+<!-- Header -->
+<header>
+    <h1>Welcome to Entrance Master!</h1>
+</header>
 
-     <!-- Profile Picture -->
-<div class="profile-picture">
-  {% if student_profile.profile_picture %}
-      <img src="{{ student_profile.profile_picture.url }}" alt="Profile Picture">
-  {% else %}
-      <!-- Display a default image or a placeholder -->
-      <img src="{% static 'assets/images/camera_icon.png' %}" alt="Default Profile Picture" class="default-profile-pic">
-  {% endif %}
-  <div class="camera-icon">
-      <img src="{% static 'assets/images/camera_icon.png' %}" alt="Camera Icon" class="camera-icon-img">
-  </div>
+{% block content %}
+<!-- Student Profile -->
+<div class="container">
+    <!-- Welcome Message with Image -->
+    <div class="welcome-box">
+        <img src="{% static 'assets/images/Welcome_image.jpg' %}" alt="Welcome Image" class="welcome-image">
+        <div class="welcome-text">Welcome,{{ student_profile.user.get_full_name }}</div> <!-- Display user's username -->
+    </div>
+
+  <!-- Profile Picture -->
+<div class="profile-picture" id="profile-picture">
+    {% if student_profile.profile_picture %}
+        <img src="{{ student_profile.profile_picture.url }}" alt="Profile Picture">
+    {% else %}
+        <!-- Display a default image or a placeholder -->
+        <img src="{% static 'assets/images/default_profile_picture.png' %}" alt="Default Profile Picture">
+    {% endif %}
+    <!-- Camera icon -->
+    <button type="button" class="btn" id="upload-button">
+        <img src="{% static 'assets/images/camera_icon.png' %}" alt="Camera Icon" style="width: 20px; height: 20px;">
+    </button>
 </div>
 
 
-        <!-- Profile Details -->
-        <div class="profile-details">
-            <p>{{ student_profile.user.get_full_name }}</p>  <!-- Display user's full name -->
-        </div>
-
-        <!-- Profile Form -->
-        <div class="profile-form">
-            <form method="post" enctype="multipart/form-data" action="{% url 'main:profile' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn">Upload</button>
-            </form>
-        </div>
+    <!-- Profile Details -->
+    <div class="profile-details">
+        <p>{{ student_profile.user.get_full_name }}</p> <!-- Display user's full name -->
     </div>
+
+    <!-- Profile Form -->
+    <div class="profile-form">
+        <form id="upload-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" id="file-input" name="profile_picture" style="display: none;">
+        </form>
+    </div>
+</div>
+<script>
+    // Show camera icon on click or hover
+      document.getElementById('profile-picture').addEventListener('mouseenter', function() {
+    document.getElementById('upload-button').style.display = 'block';
+});
+
+     document.getElementById('profile-picture').addEventListener('mouseleave', function() {
+    document.getElementById('upload-button').style.display = 'none';
+});
+
+      document.getElementById('profile-picture').addEventListener('click', function() {
+      document.getElementById('upload-button').style.display = 'block';
+});
+
+
+ 
+
+    // Handle file upload
+    document.getElementById('upload-button').addEventListener('click', function() {
+        // Trigger file input click
+        document.getElementById('file-input').click();
+    });
+
+    // Handle file change
+    document.getElementById('file-input').addEventListener('change', function() {
+        var file = this.files[0];
+        var formData = new FormData();
+        formData.append('profile_picture', file);
+
+        // Send AJAX request to upload the file
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '{% url "main:profile" %}', true);
+        xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // File uploaded successfully
+                // Optionally, you can handle the response here
+                console.log('File uploaded successfully');
+            }
+        };
+        xhr.send(formData);
+    });
+</script>
+{% endblock %}
 </body>
 </html>

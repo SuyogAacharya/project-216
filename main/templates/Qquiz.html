@@ -102,6 +102,23 @@
   </style>
 </head>
 <body>
+  <div id="app" class="mt-5 pt-5">
+    <div class="container">
+        <form @submit.prevent="handleSubmit()">
+            <div v-for="(question,index) in questions" :key="question.id" class="mt-5 question">
+                <p>[[index + 1]]. [[question.question]]</p>
+                <div class="options" v-for="(option , i) in question.options">
+                    <input :id="'radio-'+question.id+'-'+i" @change="check(index , i , question.id)" type="radio"
+                        :value="option" :name="'option-'+question.id">
+                    <label :for="'radio-'+question.id+'-'+i">[[option]]</label>
+                </div>
+                <p :id="'show_message-'+question.id"></p>
+            </div>
+
+            <button class="btn btn-danger btn-submit" type="submit">Submit</button>
+        </form>
+    </div>
+  </div>
   <script>
     var app = new Vue({
         delimiters: ['[[', ']]'],
