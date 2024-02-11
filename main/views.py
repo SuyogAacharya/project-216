@@ -32,8 +32,6 @@ def team(request):
 def sidebar(request):  
     return render(request, 'sidebar.html')
 
-def defult_page(request):  
-    return render(request, 'defult_page.html')
 
 
 def notice(request):

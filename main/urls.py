@@ -21,7 +21,7 @@ urlpatterns = [
     path('questionbank/score/', view_Questionbank_score, name='view_Questionbank_score'), 
     path('api/questionbank/<int:id>/', api_Questionbank_question, name='api_Questionbank_question'), 
     path('api/Questionbank_check-score/', check_Questionbank_score, name='Questionbank_check_score'),  
-    path('defult_page/', defult_page, name='defult_page'),
+   
     path('notice/', notice, name='notice'),
     path('modelexam/', modelexam, name='modelexam'),
     path('view_score/' , view_score , name="view_score"),
