@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
+from .forms import ProfileForm
 import json
 
 def index(request):
@@ -23,6 +24,25 @@ def course_grid_3(request):
     
 def course_grid_4(request):  
     return render(request, 'course-grid-4.html')
+
+def profile(request):
+    # Fetch the existing profile if it exists
+    student_profile, created = StudentProfile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=student_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile/')  # Redirect to the same page after saving
+    else:
+        form = ProfileForm(instance=student_profile)
+    
+    context = {
+        'form': form,
+        'student_profile': student_profile
+    }
+    return render(request,'profile.html', context)
+
 
 def team(request): 
     team_members = TeamMember.objects.all()
