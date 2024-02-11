@@ -143,6 +143,35 @@ header h1 {
 .btn:hover {
     background-color: #0d8c0a;
 }
+/* Camera Icon */
+.camera-icon {
+    position: absolute;
+    bottom: -15px; /* Adjust the distance from the bottom as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+    border-radius: 50%;
+    width: 30px; /* Adjust the size of the camera icon */
+    height: 30px; /* Adjust the size of the camera icon */
+    display: none; /* Initially hide the camera icon */
+}
+
+.camera-icon:hover {
+    cursor: pointer;
+}
+
+.camera-icon-img {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.profile-picture:hover .camera-icon {
+    display: block; /* Show the camera icon when profile picture is hovered over */
+}
+
+
     </style>
 </head>
 <body>
@@ -160,14 +189,17 @@ header h1 {
             <div class="welcome-text">Welcome,{{ student_profile.user.get_full_name }}</div> <!-- Display user's username -->
         </div>
 
-      <!-- Profile Picture -->
+     <!-- Profile Picture -->
 <div class="profile-picture">
   {% if student_profile.profile_picture %}
       <img src="{{ student_profile.profile_picture.url }}" alt="Profile Picture">
   {% else %}
       <!-- Display a default image or a placeholder -->
-      <img src="{% static 'assets/images/camera_icon.png' %}" alt="Default Profile Picture">
+      <img src="{% static 'assets/images/camera_icon.png' %}" alt="Default Profile Picture" class="default-profile-pic">
   {% endif %}
+  <div class="camera-icon">
+      <img src="{% static 'assets/images/camera_icon.png' %}" alt="Camera Icon" class="camera-icon-img">
+  </div>
 </div>
 
 
