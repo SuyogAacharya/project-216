@@ -1,11 +1,13 @@
+{%  load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Site Icons -->
-        <link rel="shortcut icon" href="logo.jpg" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="logo.jpg">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'logo.jpg' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'logo.jpg' %}">
+    
     <title>Entrance-Master|Profile</title>
     <style>
         body {
@@ -59,22 +61,22 @@
     </style>
 </head>
 <body>
-  <div class="hamburger">&#9776;</div>
+    <div class="hamburger">&#9776;</div>
 
-  <div class="sidebar">
-      <a href="">🏠︎Dashboard</a>
-      <a href="{% url 'main:questionbank' %}">📝Qbank</a>
-       <a href="{% url 'main:modelexam' %}">📝Model Exams</a>
-      <a href="{% url 'main:notice' %}">📢 Notice</a>
-      <a href="/">🚪Logout</a>
-  </div> 
+    <div class="sidebar">
+        <a href="">🏠︎Dashboard</a>
+        <a href="{% url 'main:profile' %}">profile</a>
+        <a href="{% url 'main:questionbank' %}">📝Qbank</a>
+        <a href="{% url 'main:modelexam' %}">📝Model Exams</a>
+        <a href="{% url 'main:notice' %}">📢 Notice</a>
+        <a href="/">🚪Logout</a>
+    </div> 
 
-  
+ 
 
     <script>
         const hamburger = document.querySelector('.hamburger');
         const sidebar = document.querySelector('.sidebar');
-
         let isSidebarVisible = false;
 
         hamburger.addEventListener('click', () => {

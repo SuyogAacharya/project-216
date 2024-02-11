@@ -1,4 +1,6 @@
+
 {% load static %}  <!-- Load static files for CSS -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,9 +62,15 @@ header h1 {
 
 /* Welcome message */
 .welcome-box {
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 20px;
     padding: 20px;
     position: relative;
 }
@@ -138,6 +146,7 @@ header h1 {
     </style>
 </head>
 <body>
+  
     <!-- Header -->
     <header>
         <h1>Welcome to Entrance Master!</h1>
@@ -151,10 +160,16 @@ header h1 {
             <div class="welcome-text">Welcome,{{ student_profile.user.get_full_name }}</div> <!-- Display user's username -->
         </div>
 
-        <!-- Profile Picture -->
-        <div class="profile-picture">
-            <img src="{{ student_profile.profile_picture.url }}" alt="Profile Picture">
-        </div>
+      <!-- Profile Picture -->
+<div class="profile-picture">
+  {% if student_profile.profile_picture %}
+      <img src="{{ student_profile.profile_picture.url }}" alt="Profile Picture">
+  {% else %}
+      <!-- Display a default image or a placeholder -->
+      <img src="{% static 'assets/images/camera_icon.png' %}" alt="Default Profile Picture">
+  {% endif %}
+</div>
+
 
         <!-- Profile Details -->
         <div class="profile-details">
@@ -165,7 +180,7 @@ header h1 {
         <div class="profile-form">
             <form method="post" enctype="multipart/form-data" action="{% url 'main:profile' %}">
                 {% csrf_token %}
-                <input type="file" name="profile-picture-input" accept="image/*">
+                {{ form.as_p }}
                 <button type="submit" class="btn">Upload</button>
             </form>
         </div>
