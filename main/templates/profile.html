@@ -7,7 +7,7 @@
     <title>Student Profile - Entrance Master</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
-    <!-- Site CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="{% static 'assets/style.css' %}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="{% static 'assets/images/logo.jpg' %}" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{% static 'assets/images/logo.jpg' %}">
     <style>
-        html,
+          html,
         body {
             margin: 0;
             padding: 0;
@@ -110,7 +110,7 @@
             font-weight: bold;
             color: #333;
             align-self: flex-start;
-            margin-top: -40px;
+            margin-top: -20px;
             margin-left: 30px;
         }
 
@@ -133,7 +133,52 @@
 #upload-button {
     display: none;
 }
+  /* Course card styles */
+  .course-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
 
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-card img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .course-details {
+            padding: 20px;
+        }
+
+        .course-details h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        .course-details p {
+            margin-bottom: 15px;
+        }
+
+        .course-details ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .course-details ul li {
+            margin-bottom: 5px;
+        }
+
+        .course-details ul li strong {
+            font-weight: bold;
+        }
 
     </style>
 </head>
@@ -150,23 +195,22 @@
     <!-- Welcome Message with Image -->
     <div class="welcome-box">
         <img src="{% static 'assets/images/Welcome_image.jpg' %}" alt="Welcome Image" class="welcome-image">
-        <div class="welcome-text">Welcome,{{ student_profile.user.get_full_name }}</div> <!-- Display user's username -->
+        <div class="welcome-text">Welcome, {{ student_profile.user.get_full_name }}</div> <!-- Display user's username -->
     </div>
 
-  <!-- Profile Picture -->
-<div class="profile-picture" id="profile-picture">
-    {% if student_profile.profile_picture %}
-        <img src="{{ student_profile.profile_picture.url }}" alt="Profile Picture">
-    {% else %}
-        <!-- Display a default image or a placeholder -->
-        <img src="{% static 'assets/images/default_profile_picture.png' %}" alt="Default Profile Picture">
-    {% endif %}
-    <!-- Camera icon -->
-    <button type="button" class="btn" id="upload-button">
-        <img src="{% static 'assets/images/camera_icon.png' %}" alt="Camera Icon" style="width: 20px; height: 20px;">
-    </button>
-</div>
-
+    <!-- Profile Picture -->
+    <div class="profile-picture" id="profile-picture">
+        {% if student_profile.profile_picture %}
+            <img src="{{ student_profile.profile_picture.url }}" alt="Profile Picture">
+        {% else %}
+            <!-- Display a default image or a placeholder -->
+            <img src="{% static 'assets/images/default_profile_picture.png' %}" alt="Default Profile Picture">
+        {% endif %}
+        <!-- Camera icon -->
+        <button type="button" class="btn" id="upload-button">
+            <img src="{% static 'assets/images/camera_icon.png' %}" alt="Camera Icon" style="width: 20px; height: 20px;">
+        </button>
+    </div>
 
     <!-- Profile Details -->
     <div class="profile-details">
@@ -181,57 +225,79 @@
         </form>
     </div>
 </div>
+
 <!-- Display Medical Courses -->
-<h3>Medical Courses:</h3>
-<ul>
-    {% for course in medical_courses %}
-    <li>
-        
-        <img src="{{ course.image.url }}" alt="{{ course.title }}">
-        <p><strong>Title:</strong> {{ course.title }}</p>
-        <p><strong>Description:</strong> {{ course.description }}</p>
-        <p><strong>Duration (months):</strong> {{ course.duration_months }}</p>
-        <p><strong>Seats Available:</strong> {{ course.seats_available }}</p>
-        <p><strong>Team Members:</strong> {{ course.team_members }}</p>
-        <p><strong>Price:</strong> {{ course.price }}</p>
-    </li>
-    {% endfor %}
-</ul>
+<div class="container course-section">
+    <h3>Medical Courses:</h3>
+    <div class="row">
+        {% for course in medical_courses %}
+        <div class="col-md-6">
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="{{ course.image.url }}" alt="{{ course.title }}">
+                </div>
+                <div class="course-details">
+                    <h4>{{ course.title }}</h4>
+                    <p>{{ course.description }}</p>
+                    <ul>
+                        <li><strong>Duration (months):</strong> {{ course.duration_months }}</li>
+                        <li><strong>Seats Available:</strong> {{ course.seats_available }}</li>
+                        <li><strong>Team Members:</strong> {{ course.team_members }}</li>
+                        <li><strong>Price:</strong> {{ course.price }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
 <!-- Display CA Courses -->
-<h3>CA Courses:</h3>
-<ul>
-    {% for course in ca_courses %}
-    <li>
-        
-    <img src="{{ course.image.url }}" alt="{{ course.title }}">
-    <p><strong>Title:</strong> {{ course.title }}</p>
-    <p><strong>Description:</strong> {{ course.description }}</p>
-    <p><strong>Duration (months):</strong> {{ course.duration_months }}</p>
-    <p><strong>Seats Available:</strong> {{ course.seats_available }}</p>
-    <p><strong>Team Members:</strong> {{ course.team_members }}</p>
-    <p><strong>Price:</strong> {{ course.price }}</p>
-    </li>
-    {% endfor %}
-</ul>
+<div class="container course-section">
+    <h3><strong>CA Courses:</strong></h3>
+    <div class="row">
+        {% for course in ca_courses %}
+        <div class="col-md-6">
+            <div class="course-card">
+                <img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-image">
+                <div class="course-details">
+                    <h4>{{ course.title }}</h4>
+                    <p>{{ course.description }}</p>
+                    <ul>
+                        <li><strong>Duration (months):</strong> {{ course.duration_months }}</li>
+                        <li><strong>Seats Available:</strong> {{ course.seats_available }}</li>
+                        <li><strong>Team Members:</strong> {{ course.team_members }}</li>
+                        <li><strong>Price:</strong> {{ course.price }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 
+{% endblock %}
+
+<!-- JavaScript Files -->
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/popper.min.js' %}"></script>
+<script src="{% static 'assets/js/all.js' %}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
 
 <script>
     // Show camera icon on click or hover
-      document.getElementById('profile-picture').addEventListener('mouseenter', function() {
-    document.getElementById('upload-button').style.display = 'block';
-});
+    document.getElementById('profile-picture').addEventListener('mouseenter', function() {
+        document.getElementById('upload-button').style.display = 'block';
+    });
 
-     document.getElementById('profile-picture').addEventListener('mouseleave', function() {
-    document.getElementById('upload-button').style.display = 'none';
-});
+    document.getElementById('profile-picture').addEventListener('mouseleave', function() {
+        document.getElementById('upload-button').style.display = 'none';
+    });
 
-      document.getElementById('profile-picture').addEventListener('click', function() {
-      document.getElementById('upload-button').style.display = 'block';
-});
-
-
- 
+    document.getElementById('profile-picture').addEventListener('click', function() {
+        document.getElementById('upload-button').style.display = 'block';
+    });
 
     // Handle file upload
     document.getElementById('upload-button').addEventListener('click', function() {
@@ -259,6 +325,6 @@
         xhr.send(formData);
     });
 </script>
-{% endblock %}
+
 </body>
 </html>
