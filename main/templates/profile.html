@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Profile - Entrance Master</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/style.css' %}">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="{% static 'logo.jpg' %}" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{% static 'logo.jpg' %}">
+    <link rel="shortcut icon" href="{% static 'assets/images/logo.jpg' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'assets/images/logo.jpg' %}">
     <style>
         html,
         body {
@@ -110,7 +110,7 @@
             font-weight: bold;
             color: #333;
             align-self: flex-start;
-            margin-top: -45px;
+            margin-top: -40px;
             margin-left: 30px;
         }
 
@@ -181,6 +181,41 @@
         </form>
     </div>
 </div>
+<!-- Display Medical Courses -->
+<h3>Medical Courses:</h3>
+<ul>
+    {% for course in medical_courses %}
+    <li>
+        
+        <img src="{{ course.image.url }}" alt="{{ course.title }}">
+        <p><strong>Title:</strong> {{ course.title }}</p>
+        <p><strong>Description:</strong> {{ course.description }}</p>
+        <p><strong>Duration (months):</strong> {{ course.duration_months }}</p>
+        <p><strong>Seats Available:</strong> {{ course.seats_available }}</p>
+        <p><strong>Team Members:</strong> {{ course.team_members }}</p>
+        <p><strong>Price:</strong> {{ course.price }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+<!-- Display CA Courses -->
+<h3>CA Courses:</h3>
+<ul>
+    {% for course in ca_courses %}
+    <li>
+        
+    <img src="{{ course.image.url }}" alt="{{ course.title }}">
+    <p><strong>Title:</strong> {{ course.title }}</p>
+    <p><strong>Description:</strong> {{ course.description }}</p>
+    <p><strong>Duration (months):</strong> {{ course.duration_months }}</p>
+    <p><strong>Seats Available:</strong> {{ course.seats_available }}</p>
+    <p><strong>Team Members:</strong> {{ course.team_members }}</p>
+    <p><strong>Price:</strong> {{ course.price }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+
 <script>
     // Show camera icon on click or hover
       document.getElementById('profile-picture').addEventListener('mouseenter', function() {

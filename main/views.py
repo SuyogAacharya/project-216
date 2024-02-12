@@ -27,22 +27,28 @@ def course_grid_4(request):
     return render(request, 'course-grid-4.html')
 
 def profile(request):
+    # Fetch the existing profile if it exists
     student_profile, created = StudentProfile.objects.get_or_create(user=request.user)
+
+    # Fetch all Medical Courses and CA Courses
+    medical_courses = MedicalCourse.objects.all()
+    ca_courses = CACourse.objects.all()
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=student_profile)
         if form.is_valid():
             form.save()
-            return redirect('main:profile')
+            return redirect(reverse('main:profile'))  # Redirect to the same page after saving
     else:
         form = ProfileForm(instance=student_profile)
     
     context = {
         'form': form,
-        'student_profile': student_profile
+        'student_profile': student_profile,
+        'medical_courses': medical_courses,
+        'ca_courses': ca_courses,
     }
     return render(request, 'profile.html', context)
-
 def team(request): 
     team_members = TeamMember.objects.all()
     context = {'team_members': team_members}
