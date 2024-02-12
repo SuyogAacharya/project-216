@@ -3,7 +3,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import *
 
-
 app_name = 'main'
 
 urlpatterns = [
@@ -19,13 +18,13 @@ urlpatterns = [
     path('questionbank/', questionbank, name='questionbank'),
     path('questionbank/<int:id>/', take_Questionbank_quiz, name='take_Questionbank_quiz'), 
     path('questionbank/score/', view_Questionbank_score, name='view_Questionbank_score'), 
-    path('api/questionbank/<int:id>/', api_Questionbank_question, name='api_Questionbank_question'), 
-    path('api/Questionbank_check-score/', check_Questionbank_score, name='Questionbank_check_score'), 
+    path('api/questionbank/<int:id>/', api_Questionbank_question, name='api_questionbank_question'),
     path('profile/', profile, name='profile'),
     path('notice/', notice, name='notice'),
     path('modelexam/', modelexam, name='modelexam'),
-    path('view_score/' , view_score , name="view_score"),
-    path('api/check_score' , check_score , name="check_score"),
-    path('<id>/' , take_quiz , name="take_quiz"),
-    path('api/<id>/' , api_question , name="api_question"), 
+    path('view_score/', view_score, name="view_score"),
+    path('api/check_score/', check_score, name="check_score"),
+    path('api/questionbank/check_score/', check_score, name='check_score'),
+    path('<id>/', take_quiz, name="take_quiz"),
+    path('api/<id>/', api_question, name="api_question"), 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

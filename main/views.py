@@ -19,7 +19,6 @@ def course_grid_2(request):
     medical_courses = MedicalCourse.objects.all()  
     return render(request, 'course-grid-2.html',  {'medical_courses': medical_courses})
 
-
 def course_grid_3(request):
     ca_courses = CACourse.objects.all() 
     return render(request, 'course-grid-3.html' , {'ca_courses': ca_courses})
@@ -27,20 +26,14 @@ def course_grid_3(request):
 def course_grid_4(request):  
     return render(request, 'course-grid-4.html')
 
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from .forms import ProfileForm
-from .models import StudentProfile
-
 def profile(request):
-    # Fetch the existing profile if it exists
     student_profile, created = StudentProfile.objects.get_or_create(user=request.user)
 
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=student_profile)
         if form.is_valid():
             form.save()
-            return redirect(reverse('main:profile'))  # Redirect to the same page after saving
+            return redirect('main:profile')
     else:
         form = ProfileForm(instance=student_profile)
     
@@ -49,7 +42,6 @@ def profile(request):
         'student_profile': student_profile
     }
     return render(request, 'profile.html', context)
-
 
 def team(request): 
     team_members = TeamMember.objects.all()
@@ -60,7 +52,7 @@ def sidebar(request):
     return render(request, 'sidebar.html')
 
 def notice(request):
-    notices = Notice.objects.all()  # Retrieve all notices
+    notices = Notice.objects.all()
     return render(request, 'notice.html', {'notices': notices})  
 
 def signin(request):
@@ -160,20 +152,23 @@ def questionbank(request):
 
 @csrf_exempt
 def api_Questionbank_question(request, id):
-    raw_Questionbank_questions = QuestionbankQuestion.objects.filter(Questionbankcourse=id)[:20]
-    questions = []
-    
-    for raw_Questionbank_question in raw_Questionbank_questions:
-        question = {
-            'id': raw_Questionbank_question.id,
-            'question': raw_Questionbank_question.question,
-            'answer': raw_Questionbank_question.answer,
-            'marks': raw_Questionbank_question.marks,
-            'options': [raw_Questionbank_question.option_one, raw_Questionbank_question.option_two, raw_Questionbank_question.option_three, raw_Questionbank_question.option_four]
-        }
-        questions.append(question)
+    if request.method == 'GET':
+        raw_Questionbank_questions = QuestionbankQuestion.objects.filter(Questionbankcourse=id)[:20]
+        questions = []
         
-    return JsonResponse(questions, safe=False)
+        for raw_Questionbank_question in raw_Questionbank_questions:
+            question = {
+                'id': raw_Questionbank_question.id,
+                'question': raw_Questionbank_question.question,
+                'answer': raw_Questionbank_question.answer,
+                'marks': raw_Questionbank_question.marks,
+                'options': [raw_Questionbank_question.option_one, raw_Questionbank_question.option_two, raw_Questionbank_question.option_three, raw_Questionbank_question.option_four]
+            }
+            questions.append(question)
+            
+        return JsonResponse(questions, safe=False)
+    else:
+        return JsonResponse({'error': 'Invalid request method'})
 
 @login_required(login_url='/login')
 def view_Questionbank_score(request):
@@ -182,25 +177,43 @@ def view_Questionbank_score(request):
     context = {'Questionbank_scores': Questionbank_scores}
     return render(request, 'Qscore.html', context)
 
+@login_required(login_url='/login')
 def take_Questionbank_quiz(request, id):
-    context = {'id': id}
+    questions = QuestionbankQuestion.objects.filter(Questionbank_course=id)[:20]
+    for question in questions:
+        question.options = [question.option_one, question.option_two, question.option_three, question.option_four]
+    context = {'questions': questions}
     return render(request, 'Qquiz.html', context)
 
 @login_required(login_url='/login')
 @csrf_exempt
 def check_Questionbank_score(request):
-    data = json.loads(request.body)
-    user = request.user
-    Questionbank_course_id = data.get('course_id')
-    Questionbank_solutions = json.loads(data.get('data'))
-    Questionbank_course = QuestionbankCourse.objects.get(id=Questionbank_course_id)
-    score = 0
-    for solution in Questionbank_solutions:
-        question = QuestionbankQuestion.objects.get(id=solution.get('question_id'))
-        if question.answer == solution.get('option'):
-            score += question.marks
-   
-    Questionbank_score_board = QuestionbankScoreBoard(course=Questionbank_course, score=score, user=user)
-    Questionbank_score_board.save() 
-    
-    return JsonResponse({'message': 'success', 'status': True})
+    if request.method == 'POST':
+        data = request.POST
+        user_answers = {}
+        total_score = 0
+
+        # Fetch questions related to the specified Questionbank Course ID
+        questionbank_course_id = int(data.get('questionbank_course_id'))
+        questions = QuestionbankQuestion.objects.filter(Questionbank_course=questionbank_course_id)[:20]
+
+        # Iterate through each question
+        for question in questions:
+            question_id = question.id  # Use question.id directly
+            user_answer = data.get('question' + str(question_id))
+
+            # Check if the user's answer matches the correct answer
+            if user_answer == str(question.answer):
+                total_score += 1
+            user_answers[question_id] = user_answer
+
+        # Prepare data to be sent back to the client
+        response_data = {
+            'total_score': total_score,
+            'user_answers': user_answers,
+            'correct_answers': {str(question.id): question.answer for question in questions}
+        }
+        
+        return JsonResponse(response_data)
+
+    return JsonResponse({'error': 'Invalid request method'})

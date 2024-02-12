@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Questionbank</title>
+  <title>Quiz App</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -119,6 +120,9 @@
         </form>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
   <script>
     var app = new Vue({
         delimiters: ['[[', ']]'],
@@ -149,7 +153,6 @@
                 this.solutions.push(solution)
             },
             handleSubmit() {
-        
                 fetch('/api/check_score', {
                     method: 'POST',
                     headers: {
@@ -161,28 +164,22 @@
                        course_id : this.course_id
                     })
                 })
-            .then(res => res.json())
-            .then(result => {
-                console.log(result)
-                window.location = '/view_score'
-            })
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    window.location = '/view_score'
+                })
+            }
+        },
 
+        mounted() {
+            fetch(`/api/${this.course_id}`)
+                .then(res => res.json())
+                .then(result => {
+                    this.questions = result
+                })
         }
-    },
-
-    mounted() {
-
-        fetch(`/api/${this.course_id }`)
-            .then(res => res.json())
-            .then(result => {
-                this.questions = result
-
-            })
-
-    }
     });
-</script>
-
-
+  </script>
 </body>
 </html>
