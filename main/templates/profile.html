@@ -9,19 +9,10 @@
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
     <!-- Main CSS -->
     <link rel="stylesheet" href="{% static 'assets/style.css' %}">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
     <!-- Site Icons -->
     <link rel="shortcut icon" href="{% static 'assets/images/logo.jpg' %}" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{% static 'assets/images/logo.jpg' %}">
     <style>
-          html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
         /* Global styles */
         body {
             font-family: 'Arial', sans-serif;
@@ -123,18 +114,15 @@
         .btn {
             margin-top: -20px;
             margin-left: 50px;
-          
             cursor: pointer;
         }
+
         .btn:hover {
             background-color: #ffffff;
         }
-        /* Camera icon */
-#upload-button {
-    display: none;
-}
-  /* Course card styles */
-  .course-card {
+
+        /* Course card styles */
+        .course-card {
             border: 1px solid #ddd;
             border-radius: 8px;
             overflow: hidden;
@@ -179,7 +167,6 @@
         .course-details ul li strong {
             font-weight: bold;
         }
-
     </style>
 </head>
 <body>
@@ -227,56 +214,69 @@
 </div>
 
 <!-- Display Medical Courses -->
-<div class="container course-section">
-    <h3>Medical Courses:</h3>
-    <div class="row">
-        {% for course in medical_courses %}
-        <div class="col-md-6">
-            <div class="course-card">
-                <div class="course-image">
-                    <img src="{{ course.image.url }}" alt="{{ course.title }}">
+<div class="row">
+    {% for medical_course in medical_courses %}
+    <div class="col-lg-6 col-md-6 col-12 mb-4">
+        <div class="course-item">
+            <div class="image-blog">
+                <img src="{{ medical_course.image.url }}" alt="{{ medical_course.title }}" class="img-fluid">
+            </div>
+            <div class="course-br">
+                <div class="course-title">
+                    <h2><a href="#" onclick="redirectToLogin()">{{ medical_course.title }}</a></h2>
                 </div>
-                <div class="course-details">
-                    <h4>{{ course.title }}</h4>
-                    <p>{{ course.description }}</p>
-                    <ul>
-                        <li><strong>Duration (months):</strong> {{ course.duration_months }}</li>
-                        <li><strong>Seats Available:</strong> {{ course.seats_available }}</li>
-                        <li><strong>Team Members:</strong> {{ course.team_members }}</li>
-                        <li><strong>Price:</strong> {{ course.price }}</li>
-                    </ul>
+                <div class="course-desc">
+                    <p>{{ medical_course.description }}</p>
+                    <span>Course Content:</span>
+                    <p>{{ medical_course.content }}</p>
                 </div>
             </div>
+            <div class="course-meta-bot">
+                <ul>
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i> Duration: {{ medical_course.duration_months }} Months</li>
+                    <li><i class="fa fa-users" aria-hidden="true"></i> Seats: {{ medical_course.seats_available }}</li>
+                    <li><i class="fa fa-user" aria-hidden="true"></i> Team Members: {{ medical_course.team_members }}</li>
+                    <li><i class="fa fa-money" aria-hidden="true"></i> Price: Rs{{ medical_course.price }}/-</li>
+                </ul>
+            </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
-
+</div>
+<!-- End Course Section -->
 <!-- Display CA Courses -->
-<div class="container course-section">
-    <h3><strong>CA Courses:</strong></h3>
-    <div class="row">
-        {% for course in ca_courses %}
-        <div class="col-md-6">
-            <div class="course-card">
-                <img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-image">
-                <div class="course-details">
-                    <h4>{{ course.title }}</h4>
-                    <p>{{ course.description }}</p>
-                    <ul>
-                        <li><strong>Duration (months):</strong> {{ course.duration_months }}</li>
-                        <li><strong>Seats Available:</strong> {{ course.seats_available }}</li>
-                        <li><strong>Team Members:</strong> {{ course.team_members }}</li>
-                        <li><strong>Price:</strong> {{ course.price }}</li>
-                    </ul>
+<div class="row">
+    {% for ca_course in ca_courses %}
+    <div class="col-lg-6 col-md-6 col-12 mb-4">
+        <div class="course-item">
+            <div class="image-blog">
+                <img src="{{ ca_course.image.url }}" alt="{{ ca_course.title }}" class="img-fluid">
+            </div>
+            <div class="course-br">
+                <div class="course-title">
+                    <h2><a href="#" onclick="redirectToLogin()">{{ ca_course.title }}</a></h2>
+                </div>
+                <div class="course-desc">
+                    <p>{{ ca_course.description }}</p>
+                    <!-- You may add more details specific to CA courses here -->
                 </div>
             </div>
+            <div class="course-meta-bot">
+                <ul>
+                    <li><i class="fa fa-calendar" aria-hidden="true"></i> Duration: {{ ca_course.duration_months }} Months</li>
+                    <li><i class="fa fa-users" aria-hidden="true"></i> Seats: {{ ca_course.seats_available }}</li>
+                    <li><i class="fa fa-user" aria-hidden="true"></i> Team Members: {{ ca_course.team_members }}</li>
+                    <li><i class="fa fa-money" aria-hidden="true"></i> Price: Rs{{ ca_course.price }}/-</li>
+                </ul>
+            </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
 </div>
-
-{% endblock %}
+</div>
+</div>
+<!-- End Course Section -->
 
 <!-- JavaScript Files -->
 <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
@@ -325,6 +325,6 @@
         xhr.send(formData);
     });
 </script>
-
+{% endblock %}
 </body>
 </html>
